@@ -33,9 +33,9 @@
 <body
     class="h-screen overflow-hidden flex flex-col bg-[#F5EFE6] text-[#2D231C] antialiased selection:bg-[#A67B5B] selection:text-white">
 
-    <!-- Header Diam di Atas (Scrollbar Tidak Naik ke Sini) -->
+    <!-- Header Diam di Atas -->
     <header class="shrink-0 z-40 w-full bg-[#FAF6EE]/95 backdrop-blur-md border-b border-[#E6DBC9]">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
+        <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-3.5 sm:gap-6">
             <!-- Brand Logo -->
             <a href="{{ route('home') }}" class="inline-flex items-center gap-2 group shrink-0">
                 <span class="text-base sm:text-xl font-extrabold tracking-tight text-[#2D231C] leading-none">
@@ -44,7 +44,7 @@
             </a>
 
             <!-- Search Bar + Kalender di Kanan -->
-            <div class="flex items-center justify-end gap-1.5 sm:gap-2.5 flex-1 min-w-0 max-w-md sm:max-w-lg">
+            <div class="flex items-center justify-end gap-2 sm:gap-3 flex-1 min-w-0 max-w-md sm:max-w-lg">
                 <!-- Search Bar -->
                 <div x-data="{ keyword: '' }" class="relative flex-1 min-w-0">
                     <span class="absolute inset-y-0 left-3 flex items-center text-[#8C7D70] pointer-events-none">
@@ -75,15 +75,16 @@
                     </button>
                 </div>
 
-                <!-- Kalender Dropdown (Icon saja di HP, teks tanggal di layar sm+) -->
+                <!-- Kalender Dropdown (Nama hari di HP, tanggal lengkap di layar sm+) -->
                 <div class="relative shrink-0" x-data="miniCalendar()" @click.outside="openCal = false">
                     <button type="button" @click="openCal = !openCal"
                         aria-label="Pilih tanggal"
-                        class="flex items-center justify-center gap-1.5 w-9 h-9 sm:w-auto sm:h-auto sm:px-3.5 sm:py-2 rounded-2xl bg-[#F3ECE0] hover:bg-[#EFE4D4] border border-[#DDD0BC] text-xs font-semibold text-[#5C402C] transition cursor-pointer whitespace-nowrap">
+                        class="flex items-center justify-center gap-1.5 h-9 sm:h-auto px-2.5 sm:px-3.5 sm:py-2 rounded-2xl bg-[#F3ECE0] hover:bg-[#EFE4D4] border border-[#DDD0BC] text-xs font-semibold text-[#5C402C] transition cursor-pointer whitespace-nowrap">
                         <svg class="w-4 h-4 text-[#A67B5B] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
+                        <span class="sm:hidden font-bold" x-text="dayNameLabel"></span>
                         <span class="hidden sm:inline" x-text="selectedLabel"></span>
                     </button>
 
@@ -173,7 +174,7 @@
         </main>
 
         <!-- Footer -->
-        <footer id="kontak" class="bg-[#EDE3D4] text-[#6E5F53] border-t border-[#DFD2BE] mt-10 pt-10 pb-24 sm:pb-16">
+        <footer id="kontak" class="bg-[#EDE3D4] text-[#6E5F53] border-t border-[#DFD2BE] mt-10 pt-10 pb-28 sm:pb-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row justify-between gap-10">
                     <!-- Kiri: Brand & Deskripsi -->
@@ -224,8 +225,8 @@
             </div>
         </footer>
 
-        <!-- TOMBOL SCROLL KE ATAS (Lebih ringkas di HP) -->
-        <div class="fixed bottom-16 sm:bottom-5 right-3 sm:right-6 z-40">
+        <!-- TOMBOL SCROLL KE ATAS (Dinaikkan sedikit agar tidak bertabrakan dengan bottom nav baru) -->
+        <div class="fixed bottom-24 sm:bottom-6 right-4 sm:right-6 z-40">
             <button x-show="showScrollTop"
                     x-cloak
                     x-transition:enter="transition ease-out duration-200"
@@ -236,7 +237,7 @@
                     x-transition:leave-end="opacity-0 translate-y-2 scale-90"
                     @click="document.getElementById('main-scroll').scrollTo({ top: 0, behavior: 'smooth' })"
                     aria-label="Kembali ke atas"
-                    class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#FAF6EE]/95 border border-[#DFD2BE] text-[#8F6547] hover:bg-[#A67B5B] hover:text-[#FAF6EE] hover:border-[#A67B5B] shadow-md shadow-[#2D231C]/10 flex items-center justify-center transition-colors duration-200 cursor-pointer">
+                    class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FAF6EE]/95 border border-[#DFD2BE] text-[#8F6547] hover:bg-[#A67B5B] hover:text-[#FAF6EE] hover:border-[#A67B5B] shadow-md shadow-[#2D231C]/10 flex items-center justify-center transition-colors duration-200 cursor-pointer">
                 <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 15l7-7 7 7"/>
                 </svg>
@@ -249,6 +250,7 @@
     <script>
         function miniCalendar() {
             const now = new Date();
+            const dayNames = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
             const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
             const fullMonthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
@@ -259,6 +261,9 @@
                 viewMonth: now.getMonth(),
                 selectedDate: new Date(now.getFullYear(), now.getMonth(), now.getDate()),
 
+                get dayNameLabel() {
+                    return dayNames[this.selectedDate.getDay()];
+                },
                 get monthYearLabel() {
                     return `${fullMonthNames[this.viewMonth]} ${this.viewYear}`;
                 },
