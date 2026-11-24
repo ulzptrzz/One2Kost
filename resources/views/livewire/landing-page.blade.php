@@ -53,7 +53,7 @@
                 <div class="relative z-20 px-6 sm:px-12 py-20 max-w-2xl space-y-4">
                     <span
                         class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF6EE]/20 backdrop-blur-md text-[#FAF6EE]">
-                        Kost2Kost
+                        One2Kost
                     </span>
                     <h1 class="text-3xl sm:text-4xl font-bold text-[#FAF6EE] leading-tight">
                         Kamar Nyaman, Cek Jadwal & Booking Langsung.

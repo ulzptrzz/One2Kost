@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? 'Kost2Kost' }} — Hunian Kost Nyaman</title>
+    <title>{{ $title ?? 'One2Kost' }} — Hunian Kost Nyaman</title>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -35,42 +35,120 @@
 
     <!-- Header Diam di Atas (Scrollbar Tidak Naik ke Sini) -->
     <header class="shrink-0 z-40 w-full bg-[#FAF6EE]/95 backdrop-blur-md border-b border-[#E6DBC9]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 sm:gap-4">
             <!-- Brand Logo -->
             <a href="{{ route('home') }}" class="inline-flex items-center gap-2.5 group shrink-0">
                 <span class="text-xl font-extrabold tracking-tight text-[#2D231C] leading-none">
-                    Kost<span class="text-[#A67B5B]">2Kost</span>
+                    One<span class="text-[#A67B5B]">2Kost</span>
                 </span>
             </a>
 
-            <!-- Search Bar di Kanan -->
-            <div x-data="{ keyword: '' }" class="relative flex-1 max-w-xs sm:max-w-sm md:max-w-md">
-                <span class="absolute inset-y-0 left-3.5 flex items-center text-[#8C7D70] pointer-events-none">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                </span>
-                <input type="text"
-                       x-model="keyword"
-                       @input.debounce.300ms="
-                           window.dispatchEvent(new CustomEvent('update-room-search', { detail: keyword }));
-                           const container = document.getElementById('main-scroll');
-                           if (keyword.length > 0 && container && container.scrollTop < 300) {
-                               document.getElementById('katalog')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                           }
-                       "
-                       placeholder="Cari kamar..."
-                       class="w-full pl-9 pr-8 py-2 rounded-2xl border border-[#DDD0BC] bg-[#F3ECE0] text-xs sm:text-sm text-[#2D231C] placeholder-[#8C7D70] focus:bg-[#FAF6EE] focus:ring-2 focus:ring-[#A67B5B]/25 focus:border-[#A67B5B] outline-none transition">
-                <button type="button"
-                        x-show="keyword.length > 0"
-                        x-cloak
-                        @click="keyword = ''; window.dispatchEvent(new CustomEvent('update-room-search', { detail: '' }))"
-                        aria-label="Hapus pencarian"
-                        class="absolute inset-y-0 right-3 flex items-center text-[#8C7D70] hover:text-[#2D231C]">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
+            <!-- Search Bar + Kalender di Kanan -->
+            <div class="flex items-center justify-end gap-2 sm:gap-2.5 flex-1 max-w-md sm:max-w-lg">
+                <!-- Search Bar -->
+                <div x-data="{ keyword: '' }" class="relative flex-1 min-w-0">
+                    <span class="absolute inset-y-0 left-3.5 flex items-center text-[#8C7D70] pointer-events-none">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </span>
+                    <input type="text"
+                           x-model="keyword"
+                           @input.debounce.300ms="
+                               window.dispatchEvent(new CustomEvent('update-room-search', { detail: keyword }));
+                               const container = document.getElementById('main-scroll');
+                               if (keyword.length > 0 && container && container.scrollTop < 300) {
+                                   document.getElementById('katalog')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                               }
+                           "
+                           placeholder="Cari kamar..."
+                           class="w-full pl-9 pr-8 py-2 rounded-2xl border border-[#DDD0BC] bg-[#F3ECE0] text-xs sm:text-sm text-[#2D231C] placeholder-[#8C7D70] focus:bg-[#FAF6EE] focus:ring-2 focus:ring-[#A67B5B]/25 focus:border-[#A67B5B] outline-none transition">
+                    <button type="button"
+                            x-show="keyword.length > 0"
+                            x-cloak
+                            @click="keyword = ''; window.dispatchEvent(new CustomEvent('update-room-search', { detail: '' }))"
+                            aria-label="Hapus pencarian"
+                            class="absolute inset-y-0 right-3 flex items-center text-[#8C7D70] hover:text-[#2D231C] cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Kalender Dropdown (Gaya Admin) -->
+                <div class="relative shrink-0" x-data="miniCalendar()" @click.outside="openCal = false">
+                    <button type="button" @click="openCal = !openCal"
+                        class="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-[#F3ECE0] hover:bg-[#EFE4D4] border border-[#DDD0BC] text-xs font-semibold text-[#5C402C] transition cursor-pointer whitespace-nowrap">
+                        <svg class="w-4 h-4 text-[#A67B5B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span x-text="selectedLabel"></span>
+                    </button>
+
+                    <!-- Popup Kalender -->
+                    <div x-show="openCal" x-cloak
+                        x-transition:enter="transition ease-out duration-150"
+                        x-transition:enter-start="opacity-0 scale-95 -translate-y-1"
+                        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-100"
+                        x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 scale-95 -translate-y-1"
+                        class="absolute right-0 mt-2 w-72 rounded-2xl bg-[#FAF6EE] border border-[#E2D6C3] shadow-xl p-4 z-50 text-xs">
+
+                        <!-- Header Bulan & Navigasi -->
+                        <div class="flex items-center justify-between mb-3">
+                            <button type="button" @click="prevMonth()"
+                                class="w-7 h-7 rounded-full border border-[#E2D6C3] text-[#5C402C] hover:bg-[#EFE4D4] flex items-center justify-center cursor-pointer">
+                                ‹
+                            </button>
+                            <span class="font-extrabold text-[#5C402C]" x-text="monthYearLabel"></span>
+                            <button type="button" @click="nextMonth()"
+                                class="w-7 h-7 rounded-full border border-[#E2D6C3] text-[#5C402C] hover:bg-[#EFE4D4] flex items-center justify-center cursor-pointer">
+                                ›
+                            </button>
+                        </div>
+
+                        <!-- Nama Hari -->
+                        <div class="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-[#9C785C] mb-1.5">
+                            <span>Min</span>
+                            <span>Sen</span>
+                            <span>Sel</span>
+                            <span>Rab</span>
+                            <span>Kam</span>
+                            <span>Jum</span>
+                            <span>Sab</span>
+                        </div>
+
+                        <!-- Grid Tanggal -->
+                        <div class="grid grid-cols-7 gap-1 text-center">
+                            <template x-for="blank in blanks" :key="'b-' + blank">
+                                <div class="h-7"></div>
+                            </template>
+
+                            <template x-for="day in daysInMonth" :key="day">
+                                <button type="button" @click="selectDate(day)"
+                                    class="h-7 w-7 mx-auto rounded-full flex items-center justify-center text-[11px] font-semibold transition cursor-pointer"
+                                    :class="{
+                                        'bg-[#A67B5B] text-[#FAF6EE] font-bold': isSelected(day),
+                                        'border border-[#A67B5B] text-[#A67B5B] font-bold': !isSelected(day) && isToday(day),
+                                        'text-[#5C402C] hover:bg-[#EFE4D4]': !isSelected(day) && !isToday(day)
+                                    }"
+                                    x-text="day">
+                                </button>
+                            </template>
+                        </div>
+
+                        <!-- Tombol Hari Ini -->
+                        <div class="mt-3 pt-2.5 border-t border-[#E8DEC9] flex items-center justify-between">
+                            <span class="text-[11px] text-[#8F6547]" x-text="fullSelectedLabel"></span>
+                            <button type="button" @click="goToday()"
+                                class="text-[11px] font-bold text-[#A67B5B] hover:text-[#5C402C] cursor-pointer">
+                                Hari Ini
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -94,14 +172,13 @@
         </main>
 
         <!-- Footer -->
-        <!-- Footer -->
         <footer id="kontak" class="bg-[#EDE3D4] text-[#6E5F53] border-t border-[#DFD2BE] mt-10 pt-10 pb-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row justify-between gap-10">
                     <!-- Kiri: Brand & Deskripsi -->
                     <div class="space-y-3 max-w-sm">
                         <div class="flex items-center gap-2.5">
-                            <span class="text-xl font-bold text-[#2D231C] tracking-tight">Kost<span class="text-[#A67B5B]">2Kost</span></span>
+                            <span class="text-xl font-bold text-[#2D231C] tracking-tight">One<span class="text-[#A67B5B]">2Kost</span></span>
                         </div>
                         <p class="text-xs text-[#6E5F53] leading-relaxed">
                             Platform penyewaan kost dengan cek jadwal kamar langsung, opsi DP 50%, dan pengelolaan tagihan bulanan yang rapi.
@@ -132,7 +209,7 @@
                                 </li>
                                 <li class="flex items-center gap-2">
                                     <svg class="w-4 h-4 text-[#A67B5B] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                                    <span>Email: pengelola@kost2kost.com</span>
+                                    <span>Email: pengelola@one2kost.com</span>
                                 </li>
                             </ul>
                         </div>
@@ -140,7 +217,7 @@
                 </div>
 
                 <div class="mt-8 pt-5 border-t border-[#DFD2BE] text-center text-[11px] text-[#8C7D70] flex flex-col sm:flex-row justify-between items-center gap-2">
-                    <p>&copy; {{ date('Y') }} Kost2Kost. Hak cipta dilindungi.</p>
+                    <p>&copy; {{ date('Y') }} One2Kost. Hak cipta dilindungi.</p>
                     <p>Sistem Pengelolaan Hunian Kost</p>
                 </div>
             </div>
@@ -167,6 +244,81 @@
     </div>
 
     <x-bottom-nav />
+
+    <script>
+        function miniCalendar() {
+            const now = new Date();
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const fullMonthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+            return {
+                openCal: false,
+                today: now,
+                viewYear: now.getFullYear(),
+                viewMonth: now.getMonth(),
+                selectedDate: new Date(now.getFullYear(), now.getMonth(), now.getDate()),
+
+                get monthYearLabel() {
+                    return `${fullMonthNames[this.viewMonth]} ${this.viewYear}`;
+                },
+                get selectedLabel() {
+                    const d = String(this.selectedDate.getDate()).padStart(2, '0');
+                    const m = monthNames[this.selectedDate.getMonth()];
+                    const y = this.selectedDate.getFullYear();
+                    return `${d} ${m} ${y}`;
+                },
+                get fullSelectedLabel() {
+                    const d = this.selectedDate.getDate();
+                    const m = fullMonthNames[this.selectedDate.getMonth()];
+                    const y = this.selectedDate.getFullYear();
+                    return `${d} ${m} ${y}`;
+                },
+                get blanks() {
+                    const firstDay = new Date(this.viewYear, this.viewMonth, 1).getDay();
+                    return Array.from({ length: firstDay }, (_, i) => i + 1);
+                },
+                get daysInMonth() {
+                    const total = new Date(this.viewYear, this.viewMonth + 1, 0).getDate();
+                    return Array.from({ length: total }, (_, i) => i + 1);
+                },
+                prevMonth() {
+                    if (this.viewMonth === 0) {
+                        this.viewMonth = 11;
+                        this.viewYear--;
+                    } else {
+                        this.viewMonth--;
+                    }
+                },
+                nextMonth() {
+                    if (this.viewMonth === 11) {
+                        this.viewMonth = 0;
+                        this.viewYear++;
+                    } else {
+                        this.viewMonth++;
+                    }
+                },
+                selectDate(day) {
+                    this.selectedDate = new Date(this.viewYear, this.viewMonth, day);
+                },
+                goToday() {
+                    const t = new Date();
+                    this.viewYear = t.getFullYear();
+                    this.viewMonth = t.getMonth();
+                    this.selectedDate = new Date(t.getFullYear(), t.getMonth(), t.getDate());
+                },
+                isToday(day) {
+                    return this.today.getDate() === day &&
+                        this.today.getMonth() === this.viewMonth &&
+                        this.today.getFullYear() === this.viewYear;
+                },
+                isSelected(day) {
+                    return this.selectedDate.getDate() === day &&
+                        this.selectedDate.getMonth() === this.viewMonth &&
+                        this.selectedDate.getFullYear() === this.viewYear;
+                }
+            }
+        }
+    </script>
 
     @livewireScripts
 </body>
