@@ -47,12 +47,7 @@
     <!-- BAGIAN 1: INFORMASI KAMAR & MASA SEWA SAYA -->
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] overflow-hidden">
         <div class="px-5 py-3 bg-[#F3ECE0] border-b border-[#E2D6C3] flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-[#8F6547]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Informasi Kamar & Masa Sewa Saya</h3>
-            </div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Informasi Kamar & Masa Sewa Saya</h3>
             @if($activeBooking)
                 <span class="px-2.5 py-0.5 rounded text-[11px] font-bold {{ $activeBooking->status === 'active' ? 'bg-[#EBF2E6] text-[#3F5E30] border border-[#C6D8BA]' : 'bg-[#F7ECD9] text-[#8A5A19] border border-[#E3C898]' }}">
                     {{ $activeBooking->status_label }}
@@ -174,12 +169,7 @@
 
     <!-- BAGIAN 2: REKENING TUJUAN -->
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] p-5">
-        <div class="flex items-center gap-2 mb-3">
-            <svg class="w-4 h-4 text-[#8F6547]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-            </svg>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Rekening Bank Resmi Tujuan Transfer Pengelola</h3>
-        </div>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Rekening Bank Resmi Tujuan Transfer Pengelola</h3>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             @foreach($bankAccounts as $bank)
                 <div class="p-3.5 rounded-lg bg-[#F3ECE0] border border-[#E2D6C3]">
@@ -195,7 +185,6 @@
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] overflow-hidden">
         <div class="px-5 py-3 bg-[#F3ECE0] border-b border-[#E2D6C3] flex items-center justify-between">
             <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Histori & Bukti Pembayaran</h3>
-            <span class="text-xs font-semibold text-[#5C402C]">Total: {{ $payments->total() }} Transaksi</span>
         </div>
 
         <div class="overflow-x-auto">
@@ -280,7 +269,7 @@
             <div class="fixed inset-0 bg-[#5C402C]/45 backdrop-blur-xs transition-opacity" wire:click="$set('showUploadModal', false)"></div>
 
             <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-                <div class="relative transform overflow-hidden rounded-xl bg-[#FAF6EE] text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-[#E2D6C3]">
+                <div class="relative transform overflow-hidden rounded-xl bg-[#FAF6EE] text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
 
                     <!-- Header Warna Admin -->
                     <div class="px-5 py-3.5 bg-[#C29A78] text-[#FAF6EE] flex items-center justify-between">

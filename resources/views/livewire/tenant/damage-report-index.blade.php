@@ -24,7 +24,6 @@
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] overflow-hidden">
         <div class="px-5 py-3 bg-[#F3ECE0] border-b border-[#E2D6C3] flex items-center justify-between">
             <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Riwayat Laporan & Pelacakan Status</h3>
-            <span class="text-xs font-semibold text-[#5C402C]">Total: {{ $reports->total() }} Laporan</span>
         </div>
 
         <div class="divide-y divide-[#E8DEC9]">
@@ -97,7 +96,7 @@
             <div class="fixed inset-0 bg-[#5C402C]/45 backdrop-blur-xs transition-opacity" wire:click="$set('showCreateModal', false)"></div>
 
             <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-                <div class="relative transform overflow-hidden rounded-xl bg-[#FAF6EE] text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-[#E2D6C3]">
+                <div class="relative transform overflow-hidden rounded-xl bg-[#FAF6EE] text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
 
                     <div class="px-5 py-3.5 bg-[#C29A78] text-[#FAF6EE] flex items-center justify-between">
                         <div>
