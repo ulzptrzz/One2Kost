@@ -35,19 +35,19 @@
 
     <!-- Header Diam di Atas (Scrollbar Tidak Naik ke Sini) -->
     <header class="shrink-0 z-40 w-full bg-[#FAF6EE]/95 backdrop-blur-md border-b border-[#E6DBC9]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 sm:gap-4">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
             <!-- Brand Logo -->
-            <a href="{{ route('home') }}" class="inline-flex items-center gap-2.5 group shrink-0">
-                <span class="text-xl font-extrabold tracking-tight text-[#2D231C] leading-none">
+            <a href="{{ route('home') }}" class="inline-flex items-center gap-2 group shrink-0">
+                <span class="text-base sm:text-xl font-extrabold tracking-tight text-[#2D231C] leading-none">
                     One<span class="text-[#A67B5B]">2Kost</span>
                 </span>
             </a>
 
             <!-- Search Bar + Kalender di Kanan -->
-            <div class="flex items-center justify-end gap-2 sm:gap-2.5 flex-1 max-w-md sm:max-w-lg">
+            <div class="flex items-center justify-end gap-1.5 sm:gap-2.5 flex-1 min-w-0 max-w-md sm:max-w-lg">
                 <!-- Search Bar -->
                 <div x-data="{ keyword: '' }" class="relative flex-1 min-w-0">
-                    <span class="absolute inset-y-0 left-3.5 flex items-center text-[#8C7D70] pointer-events-none">
+                    <span class="absolute inset-y-0 left-3 flex items-center text-[#8C7D70] pointer-events-none">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
@@ -62,28 +62,29 @@
                                }
                            "
                            placeholder="Cari kamar..."
-                           class="w-full pl-9 pr-8 py-2 rounded-2xl border border-[#DDD0BC] bg-[#F3ECE0] text-xs sm:text-sm text-[#2D231C] placeholder-[#8C7D70] focus:bg-[#FAF6EE] focus:ring-2 focus:ring-[#A67B5B]/25 focus:border-[#A67B5B] outline-none transition">
+                           class="w-full pl-8 sm:pl-9 pr-7 sm:pr-8 py-1.5 sm:py-2 rounded-2xl border border-[#DDD0BC] bg-[#F3ECE0] text-xs sm:text-sm text-[#2D231C] placeholder-[#8C7D70] focus:bg-[#FAF6EE] focus:ring-2 focus:ring-[#A67B5B]/25 focus:border-[#A67B5B] outline-none transition">
                     <button type="button"
                             x-show="keyword.length > 0"
                             x-cloak
                             @click="keyword = ''; window.dispatchEvent(new CustomEvent('update-room-search', { detail: '' }))"
                             aria-label="Hapus pencarian"
-                            class="absolute inset-y-0 right-3 flex items-center text-[#8C7D70] hover:text-[#2D231C] cursor-pointer">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="absolute inset-y-0 right-2.5 flex items-center text-[#8C7D70] hover:text-[#2D231C] cursor-pointer">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
                 </div>
 
-                <!-- Kalender Dropdown -->
+                <!-- Kalender Dropdown (Icon saja di HP, teks tanggal di layar sm+) -->
                 <div class="relative shrink-0" x-data="miniCalendar()" @click.outside="openCal = false">
                     <button type="button" @click="openCal = !openCal"
-                        class="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-[#F3ECE0] hover:bg-[#EFE4D4] border border-[#DDD0BC] text-xs font-semibold text-[#5C402C] transition cursor-pointer whitespace-nowrap">
-                        <svg class="w-4 h-4 text-[#A67B5B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        aria-label="Pilih tanggal"
+                        class="flex items-center justify-center gap-1.5 w-9 h-9 sm:w-auto sm:h-auto sm:px-3.5 sm:py-2 rounded-2xl bg-[#F3ECE0] hover:bg-[#EFE4D4] border border-[#DDD0BC] text-xs font-semibold text-[#5C402C] transition cursor-pointer whitespace-nowrap">
+                        <svg class="w-4 h-4 text-[#A67B5B] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        <span x-text="selectedLabel"></span>
+                        <span class="hidden sm:inline" x-text="selectedLabel"></span>
                     </button>
 
                     <!-- Popup Kalender -->
@@ -172,7 +173,7 @@
         </main>
 
         <!-- Footer -->
-        <footer id="kontak" class="bg-[#EDE3D4] text-[#6E5F53] border-t border-[#DFD2BE] mt-10 pt-10 pb-16">
+        <footer id="kontak" class="bg-[#EDE3D4] text-[#6E5F53] border-t border-[#DFD2BE] mt-10 pt-10 pb-24 sm:pb-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row justify-between gap-10">
                     <!-- Kiri: Brand & Deskripsi -->
@@ -223,7 +224,7 @@
             </div>
         </footer>
 
-        <!-- TOMBOL SCROLL KE ATAS -->
+        <!-- TOMBOL SCROLL KE ATAS (Lebih ringkas di HP) -->
         <div class="fixed bottom-16 sm:bottom-5 right-3 sm:right-6 z-40">
             <button x-show="showScrollTop"
                     x-cloak
