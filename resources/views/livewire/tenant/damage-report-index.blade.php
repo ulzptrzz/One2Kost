@@ -28,7 +28,7 @@
         </div>
 
         <div class="divide-y divide-[#E8DEC9]">
-            @forelse($reports as$r)
+            @forelse($reports as $r)
                 <div class="p-5 flex flex-col sm:flex-row items-start justify-between gap-4 hover:bg-[#F3ECE0]/60 transition">
                     <div class="flex items-start gap-3.5">
                         @if($r->photo)
