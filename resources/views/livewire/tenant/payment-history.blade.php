@@ -48,11 +48,6 @@
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] overflow-hidden">
         <div class="px-5 py-3 bg-[#F3ECE0] border-b border-[#E2D6C3] flex items-center justify-between">
             <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Informasi Kamar & Masa Sewa Saya</h3>
-            @if($activeBooking)
-                <span class="px-2.5 py-0.5 rounded text-[11px] font-bold {{ $activeBooking->status === 'active' ? 'bg-[#EBF2E6] text-[#3F5E30] border border-[#C6D8BA]' : 'bg-[#F7ECD9] text-[#8A5A19] border border-[#E3C898]' }}">
-                    {{ $activeBooking->status_label }}
-                </span>
-            @endif
         </div>
 
         <div class="p-5">
@@ -275,7 +270,7 @@
         </div>
     </div>
 
-    <!-- MODAL FORM UNGGAH BUKTI TRANSFER (TENGAH, TIDAK MEPET & ADA SCROLL SEPERTI ADMIN) -->
+    <!-- MODAL FORM UNGGAH BUKTI TRANSFER -->
     @if($showUploadModal)
         @teleport('body')
             <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -283,7 +278,7 @@
                 <div class="fixed inset-0 bg-[#5C402C]/45 backdrop-blur-xs transition-opacity" wire:click="$set('showUploadModal', false)"></div>
 
                 <!-- Kotak Modal Tengah -->
-                <div class="relative z-10 w-full max-w-lg max-h-[82dvh] flex flex-col overflow-hidden rounded-xl bg-[#FAF6EE] text-left shadow-2xl border border-[#E2D6C3]">
+                <div class="relative z-10 w-full max-w-lg max-h-[82dvh] flex flex-col overflow-hidden rounded-xl bg-[#FAF6EE] text-left shadow-2xl">
 
                     <!-- Header Warna Admin -->
                     <div class="px-5 py-3.5 bg-[#C29A78] text-[#FAF6EE] flex items-center justify-between gap-3 shrink-0">
