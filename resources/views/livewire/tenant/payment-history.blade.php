@@ -47,7 +47,7 @@
     <!-- BAGIAN 1: INFORMASI KAMAR & MASA SEWA SAYA -->
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] overflow-hidden">
         <div class="px-5 py-3 bg-[#F3ECE0] border-b border-[#E2D6C3] flex items-center justify-between">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Informasi Kamar & Masa Sewa Saya</h3>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Informasi Kamar</h3>
         </div>
 
         <div class="p-5">
@@ -164,7 +164,7 @@
 
     <!-- BAGIAN 2: REKENING TUJUAN -->
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] p-5 space-y-3">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Rekening Bank Resmi Tujuan Transfer Pengelola</h3>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Rekening Bank Pengelola</h3>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             @foreach($bankAccounts as $bank)
                 <div class="p-3.5 rounded-lg bg-[#F3ECE0] border border-[#E2D6C3]">
@@ -179,8 +179,7 @@
     <!-- TABEL HISTORI & BUKTI PEMBAYARAN -->
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] overflow-hidden">
         <div class="px-5 py-3 bg-[#F3ECE0] border-b border-[#E2D6C3] flex items-center justify-between">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Histori & Bukti Pembayaran</h3>
-            <span class="text-xs font-semibold text-[#5C402C]">Total: {{ $payments->total() }} Transaksi</span>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Histori Pembayaran</h3>
         </div>
 
         <div class="overflow-x-auto
@@ -192,7 +191,7 @@
             <table class="w-full text-left border-collapse text-xs">
                 <thead>
                     <tr class="bg-[#F3ECE0] text-[#8F6547] text-[11px] font-bold uppercase tracking-wider border-b border-[#E2D6C3] whitespace-nowrap">
-                        <th class="px-5 py-3 min-w-[180px]">Kode / Kamar</th>
+                        <th class="px-5 py-3 min-w-[180px]">Kamar</th>
                         <th class="px-5 py-3 min-w-[175px]">Tipe Pembayaran</th>
                         <th class="px-5 py-3 min-w-[125px]">Nominal</th>
                         <th class="px-5 py-3 min-w-[130px]">Tanggal Transfer</th>

@@ -23,8 +23,7 @@
     <!-- TABEL RIWAYAT LAPORAN KERUSAKAN -->
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] overflow-hidden">
         <div class="px-5 py-3 bg-[#F3ECE0] border-b border-[#E2D6C3] flex items-center justify-between">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Riwayat Laporan & Pelacakan Status</h3>
-            <span class="text-xs font-semibold text-[#5C402C]">Total: {{ $reports->total() }} Laporan</span>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Riwayat Kerusakan</h3>
         </div>
 
         <div class="overflow-x-auto
@@ -36,7 +35,7 @@
             <table class="w-full text-left border-collapse text-xs">
                 <thead>
                     <tr class="bg-[#F3ECE0] text-[#8F6547] text-[11px] font-bold uppercase tracking-wider border-b border-[#E2D6C3] whitespace-nowrap">
-                        <th class="px-5 py-3 min-w-[190px]">Perlengkapan & Tanggal</th>
+                        <th class="px-5 py-3 min-w-[190px]">Kerusakan</th>
                         <th class="px-5 py-3 min-w-[230px]">Deskripsi Kerusakan</th>
                         <th class="px-5 py-3 min-w-[115px]">Foto Bukti</th>
                         <th class="px-5 py-3 min-w-[140px]">Status Pelacakan</th>

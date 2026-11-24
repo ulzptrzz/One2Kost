@@ -23,18 +23,18 @@
     <!-- LIST LAPORAN TAMU -->
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] overflow-hidden">
         <div class="px-5 py-3 bg-[#F3ECE0] border-b border-[#E2D6C3] flex items-center justify-between">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Riwayat Catatan Tamu Berkunjung</h3>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Riwayat Tamu Berkunjung</h3>
         </div>
 
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs">
                 <thead>
                     <tr class="bg-[#F3ECE0] text-[#8F6547] text-[11px] font-bold uppercase tracking-wider border-b border-[#E2D6C3]">
-                        <th class="px-5 py-3">Nama Tamu & Hubungan</th>
+                        <th class="px-5 py-3">Nama Tamu</th>
                         <th class="px-5 py-3">Tanggal & Jam</th>
                         <th class="px-5 py-3">Durasi Kunjungan</th>
                         <th class="px-5 py-3">Keperluan</th>
-                        <th class="px-5 py-3">No. Kontak Tamu</th>
+                        <th class="px-5 py-3">Kontak Tamu</th>
                         <th class="px-5 py-3">Status Pengelola</th>
                     </tr>
                 </thead>
