@@ -24,7 +24,6 @@
     <div class="bg-[#FAF6EE] rounded-lg border border-[#E2D6C3] overflow-hidden">
         <div class="px-5 py-3 bg-[#F3ECE0] border-b border-[#E2D6C3] flex items-center justify-between">
             <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Riwayat Catatan Tamu Berkunjung</h3>
-            <span class="text-xs font-semibold text-[#5C402C]">Total: {{ $reports->total() }} Catatan</span>
         </div>
 
         <div class="overflow-x-auto">

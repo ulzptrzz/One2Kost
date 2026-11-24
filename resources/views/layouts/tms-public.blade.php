@@ -225,8 +225,8 @@
             </div>
         </footer>
 
-        <!-- TOMBOL SCROLL KE ATAS (Dinaikkan sedikit agar tidak bertabrakan dengan bottom nav baru) -->
-        <div class="fixed bottom-24 sm:bottom-6 right-4 sm:right-6 z-40">
+        <!-- TOMBOL SCROLL KE ATAS -->
+        <div class="fixed bottom-20 sm:bottom-4 right-4 sm:right-6 z-40">
             <button x-show="showScrollTop"
                     x-cloak
                     x-transition:enter="transition ease-out duration-200"
