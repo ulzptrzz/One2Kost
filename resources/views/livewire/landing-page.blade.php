@@ -451,24 +451,29 @@
     @endif
 
     <!-- Modal Pengajuan Sewa (PAS DI TENGAH, ISI TETAP SAMA) -->
+   <!-- Modal Pengajuan Sewa (WARNA SAMA DENGAN ADMIN) -->
     @if ($showBookingModal && $selectedRoom)
         @teleport('body')
             <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4" aria-labelledby="modal-title" role="dialog"
                 aria-modal="true">
-                <div class="fixed inset-0 bg-[#2D231C]/60 backdrop-blur-xs transition-opacity"
+                <div class="fixed inset-0 bg-[#5C402C]/45 backdrop-blur-xs transition-opacity"
                     wire:click="closeBookingModal"></div>
 
                 <div
-                    class="relative z-10 w-full max-w-2xl max-h-[85dvh] flex flex-col transform overflow-hidden rounded-3xl bg-[#FAF6EE] text-left shadow-2xl transition-all">
+                    class="relative z-10 w-full max-w-2xl max-h-[85dvh] flex flex-col transform overflow-hidden rounded-xl bg-[#FAF6EE] text-left shadow-2xl transition-all">
 
-                    <div class="px-6 py-4 bg-[#3B2E25] text-[#FAF6EE] flex items-center justify-between shrink-0">
-                        <div>
-                            <span class="text-[11px] font-semibold text-[#DEC3AC] uppercase tracking-wider">Pengajuan
-                                Sewa Kamar</span>
-                            <h3 class="text-base font-bold text-[#FAF6EE]">{{ $selectedRoom->name }} — Kamar
-                                {{ $selectedRoom->room_number }}</h3>
+                    <!-- Header Modal Warna Admin (#C29A78) -->
+                    <div class="px-5 py-3.5 bg-[#C29A78] text-[#FAF6EE] flex items-center justify-between gap-3 shrink-0">
+                        <div class="min-w-0">
+                            <span class="text-[11px] font-bold text-[#FAF6EE]/85 uppercase tracking-wider block">
+                                Pengajuan Sewa Kamar
+                            </span>
+                            <h3 class="text-sm sm:text-base font-bold text-[#FAF6EE] truncate">
+                                {{ $selectedRoom->name }} — Kamar {{ $selectedRoom->room_number }}
+                            </h3>
                         </div>
-                        <button wire:click="closeBookingModal" class="text-[#C4B4A5] hover:text-[#FAF6EE] p-1">
+                        <button type="button" wire:click="closeBookingModal"
+                            class="text-[#FAF6EE]/80 hover:text-[#FAF6EE] p-1 shrink-0 cursor-pointer">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12" />
@@ -476,79 +481,80 @@
                         </button>
                     </div>
 
-                    <div class="p-6 space-y-5 overflow-y-auto flex-1">
+                    <!-- Body Modal -->
+                    <div class="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1 text-xs">
                         @if (session()->has('booking_error'))
-                            <div class="p-3.5 rounded-2xl bg-rose-50 text-rose-800 text-sm">
+                            <div class="p-3.5 rounded-lg bg-[#F9E6E2] border border-[#E0B5AC] text-[#9E4735] text-xs font-semibold">
                                 {{ session('booking_error') }}
                             </div>
                         @endif
 
                         @if ($bookingSuccess && $createdBooking)
-                            <div class="py-4 space-y-4">
+                            <div class="py-2 space-y-4">
                                 <div
-                                    class="inline-flex items-center px-3 py-1 rounded-full bg-[#EFE4D4] text-[#8F6547] text-xs font-bold">
+                                    class="inline-flex items-center px-3 py-1 rounded-md bg-[#EFE4D4] text-[#8F6547] text-[11px] font-bold uppercase">
                                     Pengajuan Tercatat
                                 </div>
-                                <h4 class="text-xl font-bold text-[#2D231C]">Booking Berhasil Dibuat</h4>
-                                <p class="text-sm text-[#6E5F53] leading-relaxed">
+                                <h4 class="text-lg font-extrabold text-[#5C402C]">Booking Berhasil Dibuat</h4>
+                                <p class="text-xs sm:text-sm text-[#7A563C] leading-relaxed">
                                     @if ($createdBooking->status === 'waiting_renewal_confirmation')
                                         Pengajuan Anda masuk ke daftar tunggu. Pembayaran baru perlu dilakukan setelah
                                         penghuni saat ini mengonfirmasi tanggal keluar.
                                     @else
                                         Kode booking Anda adalah <span
-                                            class="font-mono font-bold text-[#8F6547] bg-[#EFE4D4] px-2.5 py-0.5 rounded-full">{{ $createdBooking->booking_code }}</span>.
+                                            class="font-mono font-bold text-[#5C402C] bg-[#EFE4D4] px-2.5 py-0.5 rounded-md">{{ $createdBooking->booking_code }}</span>.
                                         Silakan lanjutkan pembayaran melalui halaman tagihan penyewa.
                                     @endif
                                 </p>
 
-                                <div class="p-4 rounded-2xl bg-[#F3ECE0] text-xs space-y-2">
-                                    <div class="flex justify-between"><span class="text-[#6E5F53]">Kamar</span>
-                                        <strong class="text-[#2D231C]">{{ $selectedRoom->room_number }}
+                                <div class="p-4 rounded-lg bg-[#F3ECE0] border border-[#E2D6C3] text-xs space-y-2">
+                                    <div class="flex justify-between"><span class="text-[#8F6547]">Kamar</span>
+                                        <strong class="text-[#5C402C]">{{ $selectedRoom->room_number }}
                                             ({{ $selectedRoom->room_type }})</strong>
                                     </div>
-                                    <div class="flex justify-between"><span class="text-[#6E5F53]">Periode Sewa</span>
+                                    <div class="flex justify-between"><span class="text-[#8F6547]">Periode Sewa</span>
                                         <strong
-                                            class="text-[#2D231C]">{{ $createdBooking->start_date->format('d M Y') }}
+                                            class="text-[#5C402C]">{{ $createdBooking->start_date->format('d M Y') }}
                                             – {{ $createdBooking->end_date->format('d M Y') }}</strong>
                                     </div>
-                                    <div class="flex justify-between"><span class="text-[#6E5F53]">Skema Bayar</span>
+                                    <div class="flex justify-between"><span class="text-[#8F6547]">Skema Bayar</span>
                                         <strong
-                                            class="text-[#2D231C]">{{ $createdBooking->payment_scheme === 'dp' ? 'DP 50%' : 'Lunas' }}</strong>
+                                            class="text-[#5C402C]">{{ $createdBooking->payment_scheme === 'dp' ? 'DP 50%' : 'Lunas' }}</strong>
                                     </div>
-                                    <div class="flex justify-between"><span class="text-[#6E5F53]">Total Biaya</span>
+                                    <div class="flex justify-between pt-1.5 border-t border-[#E2D6C3]"><span class="text-[#8F6547]">Total Biaya</span>
                                         <strong
-                                            class="text-[#8F6547] font-bold">{{ $createdBooking->formatted_total_price }}</strong>
+                                            class="text-[#5C402C] font-extrabold">{{ $createdBooking->formatted_total_price }}</strong>
                                     </div>
                                 </div>
 
-                                <div class="pt-3 flex flex-col sm:flex-row gap-2.5">
+                                <div class="pt-3 border-t border-[#E8DEC9] flex flex-col sm:flex-row gap-2.5">
                                     <a href="{{ route('tenant.dashboard') }}"
-                                        class="px-5 py-2.5 rounded-full bg-[#A67B5B] text-[#FAF6EE] font-semibold text-sm text-center hover:bg-[#8F6547] transition">
+                                        class="px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs text-center hover:bg-[#8F6547] transition">
                                         Ke Dashboard Penyewa
                                     </a>
                                     <a href="{{ route('tenant.payments') }}"
-                                        class="px-5 py-2.5 rounded-full text-[#2D231C] font-semibold text-sm text-center hover:bg-[#F3ECE0] transition">
+                                        class="px-4 py-2 rounded-lg bg-[#F3ECE0] text-[#5C402C] font-semibold text-xs text-center hover:bg-[#EFE4D4] transition">
                                         Upload Bukti Transfer
                                     </a>
                                 </div>
                             </div>
                         @else
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                                 <div>
-                                    <label class="block text-xs font-semibold text-[#2D231C] mb-1">Tanggal Mulai Sewa
-                                        <span class="text-rose-600">*</span></label>
+                                    <label class="block text-[11px] font-bold uppercase text-[#5C402C] mb-1">Tanggal Mulai Sewa
+                                        <span class="text-[#9E4735]">*</span></label>
                                     <input type="date" wire:model.live="startDate"
-                                        class="w-full px-3.5 py-2 rounded-xl bg-[#F3ECE0] text-sm outline-none">
+                                        class="w-full px-3 py-2 rounded-lg border border-[#DDD0BC] bg-[#F3ECE0]/60 text-[#5C402C] text-xs outline-none focus:ring-2 focus:ring-[#A67B5B]">
                                     @error('startDate')
-                                        <span class="text-xs text-rose-600">{{ $message }}</span>
+                                        <span class="text-xs text-[#9E4735]">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div>
-                                    <label class="block text-xs font-semibold text-[#2D231C] mb-1">Durasi Sewa <span
-                                            class="text-rose-600">*</span></label>
+                                    <label class="block text-[11px] font-bold uppercase text-[#5C402C] mb-1">Durasi Sewa <span
+                                            class="text-[#9E4735]">*</span></label>
                                     <select wire:model.live="durationMonths"
-                                        class="w-full px-3.5 py-2 rounded-xl bg-[#F3ECE0] text-sm outline-none">
+                                        class="w-full px-3 py-2 rounded-lg border border-[#DDD0BC] bg-[#F3ECE0]/60 text-[#5C402C] text-xs outline-none focus:ring-2 focus:ring-[#A67B5B]">
                                         <option value="1">1 Bulan</option>
                                         <option value="3">3 Bulan</option>
                                         <option value="6">6 Bulan</option>
@@ -556,17 +562,16 @@
                                         <option value="24">24 Bulan (2 Tahun)</option>
                                     </select>
                                     @error('durationMonths')
-                                        <span class="text-xs text-rose-600">{{ $message }}</span>
+                                        <span class="text-xs text-[#9E4735]">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
                             @if ($hasConflict)
-                                <div class="p-4 rounded-2xl bg-rose-50 text-rose-900 space-y-1.5">
-                                    <p class="font-bold text-sm text-rose-800">Jadwal Kamar Tidak Tersedia di Tanggal
-                                        Ini</p>
-                                    <p class="text-xs leading-relaxed text-rose-700">{{ $conflictMessage }}</p>
-                                    <p class="text-xs font-medium text-rose-800 pt-1">
+                                <div class="p-3.5 rounded-lg bg-[#F9E6E2] border border-[#E0B5AC] text-[#9E4735] space-y-1">
+                                    <p class="font-bold text-xs">Jadwal Kamar Tidak Tersedia di Tanggal Ini</p>
+                                    <p class="text-xs leading-relaxed">{{ $conflictMessage }}</p>
+                                    <p class="text-[11px] font-semibold pt-1">
                                         Pilih tanggal mulai setelah <strong>{{ $currentOccupantEndDate }}</strong>
                                         untuk masuk ke daftar antrian kamar ini.
                                     </p>
@@ -574,10 +579,10 @@
                             @endif
 
                             @if ($isWaitingList && !$hasConflict)
-                                <div class="p-4 rounded-2xl bg-[#EFE4D4] text-[#6E4D36] space-y-1.5">
-                                    <p class="font-bold text-sm">Masuk Daftar Tunggu (Waiting List)</p>
+                                <div class="p-3.5 rounded-lg bg-[#F7ECD9] border border-[#E3C898] text-[#8A5A19] space-y-1">
+                                    <p class="font-bold text-xs">Masuk Daftar Tunggu (Waiting List)</p>
                                     <p class="text-xs leading-relaxed">{{ $waitingListExplanation }}</p>
-                                    <p class="text-[11px] opacity-85">
+                                    <p class="text-[11px] opacity-90">
                                         Tagihan belum perlu dibayar sebelum penghuni sebelumnya mengonfirmasi
                                         kepindahan.
                                     </p>
@@ -585,70 +590,70 @@
                             @endif
 
                             <div>
-                                <label class="block text-xs font-semibold text-[#2D231C] mb-2">Skema Pembayaran</label>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="block text-[11px] font-bold uppercase text-[#5C402C] mb-1.5">Skema Pembayaran</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                     <label
-                                        class="flex items-start gap-3 p-3.5 rounded-2xl cursor-pointer transition {{ $paymentScheme === 'full' ? 'bg-[#EFE4D4]/75' : 'bg-[#F3ECE0]/60 hover:bg-[#EFE4D4]/40' }}">
+                                        class="flex items-start gap-2.5 p-3 rounded-lg border cursor-pointer transition {{ $paymentScheme === 'full' ? 'bg-[#EFE4D4]/85 border-[#A67B5B]' : 'bg-[#F3ECE0]/60 border-[#DDD0BC] hover:bg-[#EFE4D4]/50' }}">
                                         <input type="radio" wire:model.live="paymentScheme" value="full"
                                             class="mt-0.5 accent-[#A67B5B]">
                                         <div>
-                                            <p class="text-sm font-semibold text-[#2D231C]">Bayar Lunas (100%)</p>
-                                            <p class="text-xs text-[#6E5F53]">Pelunasan penuh di awal sewa</p>
+                                            <p class="text-xs font-bold text-[#5C402C]">Bayar Lunas (100%)</p>
+                                            <p class="text-[11px] text-[#8F6547]">Pelunasan penuh di awal sewa</p>
                                         </div>
                                     </label>
 
                                     <label
-                                        class="flex items-start gap-3 p-3.5 rounded-2xl cursor-pointer transition {{ $paymentScheme === 'dp' ? 'bg-[#EFE4D4]/75' : 'bg-[#F3ECE0]/60 hover:bg-[#EFE4D4]/40' }}">
+                                        class="flex items-start gap-2.5 p-3 rounded-lg border cursor-pointer transition {{ $paymentScheme === 'dp' ? 'bg-[#EFE4D4]/85 border-[#A67B5B]' : 'bg-[#F3ECE0]/60 border-[#DDD0BC] hover:bg-[#EFE4D4]/50' }}">
                                         <input type="radio" wire:model.live="paymentScheme" value="dp"
                                             class="mt-0.5 accent-[#A67B5B]">
                                         <div>
-                                            <p class="text-sm font-semibold text-[#2D231C]">Down Payment (DP 50%)</p>
-                                            <p class="text-xs text-[#6E5F53]">Sisa dilunasi sebelum masuk</p>
+                                            <p class="text-xs font-bold text-[#5C402C]">Down Payment (DP 50%)</p>
+                                            <p class="text-[11px] text-[#8F6547]">Sisa dilunasi sebelum masuk</p>
                                         </div>
                                     </label>
                                 </div>
                             </div>
 
-                            <div class="p-4 rounded-2xl bg-[#F3ECE0] space-y-2 text-xs">
-                                <div class="flex justify-between text-[#6E5F53]">
+                            <div class="p-3.5 rounded-lg bg-[#F3ECE0] border border-[#E2D6C3] space-y-2 text-xs">
+                                <div class="flex justify-between text-[#8F6547]">
                                     <span>Tanggal Selesai Sewa</span>
-                                    <span class="font-semibold text-[#2D231C]">{{ $calculatedEndDate ?: '-' }}</span>
+                                    <span class="font-bold text-[#5C402C]">{{ $calculatedEndDate ?: '-' }}</span>
                                 </div>
-                                <div class="flex justify-between text-[#6E5F53]">
+                                <div class="flex justify-between text-[#8F6547]">
                                     <span>Total Biaya Sewa</span>
-                                    <span class="font-bold text-sm text-[#2D231C]">Rp
+                                    <span class="font-extrabold text-sm text-[#5C402C]">Rp
                                         {{ number_format($calculatedTotalPrice, 0, ',', '.') }}</span>
                                 </div>
                                 @if ($paymentScheme === 'dp')
-                                    <div class="pt-2 flex justify-between text-[#8F6547] font-semibold">
+                                    <div class="pt-2 border-t border-[#E2D6C3] flex justify-between text-[#8F6547] font-bold">
                                         <span>Pembayaran DP (50%)</span>
                                         <span>Rp {{ number_format($calculatedDpAmount, 0, ',', '.') }}</span>
                                     </div>
-                                    <div class="flex justify-between text-[#6E5F53]">
+                                    <div class="flex justify-between text-[#8F6547]">
                                         <span>Sisa Pelunasan</span>
-                                        <span class="font-semibold">Rp
+                                        <span class="font-semibold text-[#5C402C]">Rp
                                             {{ number_format($calculatedRemainingAmount, 0, ',', '.') }}</span>
                                     </div>
                                 @endif
                             </div>
 
                             <div>
-                                <label class="block text-xs font-semibold text-[#2D231C] mb-1">Catatan
+                                <label class="block text-[11px] font-bold uppercase text-[#5C402C] mb-1">Catatan
                                     (Opsional)</label>
                                 <textarea wire:model="notes" rows="2" placeholder="Perkiraan jam kedatangan atau catatan tambahan..."
-                                    class="w-full px-3 py-2 rounded-xl bg-[#F3ECE0] text-xs outline-none"></textarea>
+                                    class="w-full px-3 py-2 rounded-lg border border-[#DDD0BC] bg-[#F3ECE0]/60 text-[#5C402C] placeholder-[#9C785C] text-xs outline-none focus:ring-2 focus:ring-[#A67B5B]"></textarea>
                             </div>
 
-                            <div class="pt-3 flex items-center justify-end gap-2.5">
+                            <div class="pt-3.5 border-t border-[#E8DEC9] flex items-center justify-end gap-2.5">
                                 <button type="button" wire:click="closeBookingModal"
-                                    class="px-4 py-2 rounded-full text-[#2D231C] font-medium text-xs hover:bg-[#F3ECE0]">
+                                    class="px-4 py-2 rounded-lg bg-[#F3ECE0] text-[#5C402C] font-semibold text-xs hover:bg-[#EFE4D4] cursor-pointer">
                                     Batal
                                 </button>
 
                                 <button type="button" wire:click="submitBooking"
                                     {{ $hasConflict ? 'disabled' : '' }}
-                                    class="px-5 py-2 rounded-full font-semibold text-xs text-[#FAF6EE] transition
-                                        {{ $hasConflict ? 'bg-stone-400 cursor-not-allowed' : 'bg-[#A67B5B] hover:bg-[#8F6547]' }}">
+                                    class="px-4 py-2 rounded-lg font-bold text-xs text-[#FAF6EE] transition
+                                        {{ $hasConflict ? 'bg-[#B89F86] cursor-not-allowed' : 'bg-[#A67B5B] hover:bg-[#8F6547] cursor-pointer' }}">
                                     @if ($hasConflict)
                                         Pilih Tanggal Lain
                                     @elseif($isWaitingList)
