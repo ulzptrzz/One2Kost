@@ -1,7 +1,7 @@
-<div class="bg-[#F5EFE6] text-[#2D231C] space-y-20 pb-16">
+<div class="bg-[#F5EFE6] text-[#2D231C] space-y-14 sm:space-y-20 pb-24 sm:pb-16 overflow-x-clip">
 
     <!-- HERO SECTION -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6" x-data="{
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6" x-data="{
         currentSlide: 0,
         totalSlides: {{ count($sliders) > 0 ? count($sliders) : 1 }},
         autoplay() {
@@ -11,7 +11,7 @@
         }
     }" x-init="autoplay()">
 
-        <div class="relative rounded-2xl overflow-hidden min-h-[470px] sm:min-h-[540px] flex items-end">
+        <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[420px] sm:min-h-[540px] flex items-end">
             @forelse($sliders as $index => $slider)
                 <div x-show="currentSlide === {{ $index }}" x-transition:enter="transition ease-out duration-500"
                     x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="w-full h-full">
@@ -21,49 +21,49 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-[#241B15]/90 via-[#241B15]/35 to-transparent">
                     </div>
 
-                    <div class="relative z-20 px-6 sm:px-12 lg:px-14 pt-32 pb-16 sm:pb-20 max-w-2xl space-y-3.5">
+                    <div class="relative z-20 px-5 sm:px-12 lg:px-14 pt-24 sm:pt-32 pb-14 sm:pb-20 max-w-2xl space-y-3 sm:space-y-3.5">
                         <span
-                            class="inline-block px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-widest bg-[#FAF6EE]/15 text-[#FAF6EE] backdrop-blur-md">
+                            class="inline-block px-3.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold uppercase tracking-widest bg-[#FAF6EE]/15 text-[#FAF6EE] backdrop-blur-md">
                             {{ trim(preg_replace('/[\x{1F300}-\x{1F9FF}]/u', '', $slider->badge_text)) ?: 'HUNIAN KOST NYAMAN' }}
                         </span>
 
                         <h1
-                            class="text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-[#FAF6EE] leading-[1.15]">
+                            class="text-2xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-[#FAF6EE] leading-[1.18]">
                             {{ $slider->title ?: 'Kamar Nyaman, Cek Jadwal & Booking Langsung.' }}
                         </h1>
 
-                        <p class="text-sm sm:text-base text-[#EAE0D5] leading-relaxed">
+                        <p class="text-xs sm:text-base text-[#EAE0D5] leading-relaxed">
                             {{ $slider->subtitle ?: 'Lihat ketersediaan kamar secara langsung, ajukan tanggal masuk tanpa menunggu balasan chat, dan kelola pembayaran sewa dalam satu tempat.' }}
                         </p>
 
-                        <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2.5 sm:gap-3 pt-2">
                             <a href="{{ $slider->button_link ?: '#katalog' }}"
-                                class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#A67B5B] text-[#FAF6EE] font-semibold text-sm hover:bg-[#8F6547] transition shadow-xs">
+                                class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-full bg-[#A67B5B] text-[#FAF6EE] font-semibold text-xs sm:text-sm hover:bg-[#8F6547] transition shadow-xs">
                                 <span>{{ $slider->button_text ?: 'Pilih Kamar' }}</span>
                                 <span aria-hidden="true">→</span>
                             </a>
                             <a href="#alur-sewa"
-                                class="inline-flex items-center px-5 py-2.5 rounded-full bg-[#FAF6EE]/15 text-[#FAF6EE] font-medium text-sm hover:bg-[#FAF6EE]/25 backdrop-blur-xs transition">
+                                class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#FAF6EE]/15 text-[#FAF6EE] font-medium text-xs sm:text-sm hover:bg-[#FAF6EE]/25 backdrop-blur-xs transition">
                                 Cara Booking & Antrian
                             </a>
                         </div>
                     </div>
                 </div>
             @empty
-                <div class="relative z-20 px-6 sm:px-12 py-20 max-w-2xl space-y-4">
+                <div class="relative z-20 px-5 sm:px-12 py-16 sm:py-20 max-w-2xl space-y-3.5 sm:space-y-4">
                     <span
-                        class="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF6EE]/20 backdrop-blur-md text-[#FAF6EE]">
+                        class="inline-block px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider bg-[#FAF6EE]/20 backdrop-blur-md text-[#FAF6EE]">
                         One2Kost
                     </span>
-                    <h1 class="text-3xl sm:text-4xl font-bold text-[#FAF6EE] leading-tight">
+                    <h1 class="text-2xl sm:text-4xl font-bold text-[#FAF6EE] leading-tight">
                         Kamar Nyaman, Cek Jadwal & Booking Langsung.
                     </h1>
-                    <p class="text-sm sm:text-base text-[#EAE0D5]">
+                    <p class="text-xs sm:text-base text-[#EAE0D5] leading-relaxed">
                         Lihat ketersediaan kamar secara langsung dan atur jadwal sewa Anda dengan mudah.
                     </p>
                     <div class="pt-2">
                         <a href="#katalog"
-                            class="inline-flex items-center px-6 py-2.5 rounded-full bg-[#A67B5B] text-[#FAF6EE] font-semibold text-sm hover:bg-[#8F6547] transition">
+                            class="inline-flex items-center px-5 sm:px-6 py-2.5 rounded-full bg-[#A67B5B] text-[#FAF6EE] font-semibold text-xs sm:text-sm hover:bg-[#8F6547] transition">
                             Pilih Kamar →
                         </a>
                     </div>
@@ -71,7 +71,7 @@
             @endforelse
 
             @if (count($sliders) > 1)
-                <div class="absolute bottom-6 right-6 sm:right-12 z-30 flex items-center gap-2">
+                <div class="absolute bottom-4 sm:bottom-6 right-5 sm:right-12 z-30 flex items-center gap-2">
                     @foreach ($sliders as $index => $slider)
                         <button @click="currentSlide = {{ $index }}"
                             :class="currentSlide === {{ $index }} ? 'w-6 bg-[#FAF6EE]' :
@@ -84,28 +84,28 @@
     </section>
 
     <!-- KATALOG KAMAR -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
+    <section id="katalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-3 mb-6 sm:mb-8">
             <div>
-                <h2 class="text-2xl sm:text-3xl font-bold text-[#2D231C] tracking-tight">Daftar Kamar</h2>
-                <p class="text-sm text-[#6E5F53] mt-1">Pilih kamar untuk melihat detail fasilitas atau mengecek tanggal
+                <h2 class="text-xl sm:text-3xl font-bold text-[#2D231C] tracking-tight">Daftar Kamar</h2>
+                <p class="text-xs sm:text-sm text-[#6E5F53] mt-1">Pilih kamar untuk melihat detail fasilitas atau mengecek tanggal
                     masuk yang tersedia.</p>
             </div>
         </div>
 
         @if (count($rooms) === 0)
-            <div class="text-center py-16 bg-[#FAF6EE] rounded-2xl ]">
-                <p class="text-base font-semibold text-[#2D231C]">Tidak ada kamar yang cocok dengan filter ini.</p>
-                <p class="text-sm text-[#6E5F53] mt-1">Coba ubah pilihan tipe atau rentang harga di atas.</p>
+            <div class="text-center py-14 px-4 bg-[#FAF6EE] rounded-2xl">
+                <p class="text-sm sm:text-base font-semibold text-[#2D231C]">Tidak ada kamar yang cocok dengan filter ini.</p>
+                <p class="text-xs sm:text-sm text-[#6E5F53] mt-1">Coba ubah pilihan tipe atau rentang harga di atas.</p>
             </div>
         @else
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7">
                 @foreach ($rooms as $room)
                     @php
                         $roomPhotos = $room->all_images_urls ?? [$room->main_image_url];
                     @endphp
                     <article
-                        class="bg-[#FAF6EE] rounded-2xl  overflow-hidden shadow-2xs hover:shadow-md transition flex flex-col group">
+                        class="bg-[#FAF6EE] rounded-2xl overflow-hidden shadow-2xs hover:shadow-md transition flex flex-col group">
 
                         <!-- AREA GAMBAR BISA DIGESER / SCROLL -->
                         <div x-data="{
@@ -116,7 +116,7 @@
                             prev() { this.active = (this.active - 1 + this.photos.length) % this.photos.length }
                         }" x-on:touchstart="startX = $event.changedTouches[0].screenX"
                             x-on:touchend="let d = startX - $event.changedTouches[0].screenX; if (Math.abs(d) > 35) { d > 0 ? next() : prev() }"
-                            class="relative h-56 overflow-hidden bg-[#E8DEC8] select-none">
+                            class="relative h-52 sm:h-56 overflow-hidden bg-[#E8DEC8] select-none">
 
                             <img :src="photos[active]" alt="{{ $room->name }}"
                                 class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500">
@@ -126,28 +126,28 @@
                             </div>
 
                             <!-- Badge Type Room-->
-                            <div class="absolute top-4 left-4 z-10">
+                            <div class="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 z-10">
                                 <span
-                                    class="px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#2D231C]/35 backdrop-blur-md text-[#FAF6EE] ">
+                                    class="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-[#2D231C]/45 backdrop-blur-md text-[#FAF6EE]">
                                     {{ $room->room_type }} • Lt. {{ $room->floor }}
                                 </span>
                             </div>
 
                             <!-- Badge Status -->
-                            <div class="absolute top-4 right-4 z-10">
+                            <div class="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-10">
                                 @if ($room->status === 'available')
                                     <span
-                                        class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-[#5B8552]/90 backdrop-blur-md text-[#FAF6EE]">
+                                        class="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#5B8552]/90 backdrop-blur-md text-[#FAF6EE]">
                                         Tersedia
                                     </span>
                                 @elseif($room->status === 'occupied')
                                     <span
-                                        class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-[#2D231C]/65 backdrop-blur-md text-[#FAF6EE]">
+                                        class="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#2D231C]/70 backdrop-blur-md text-[#FAF6EE]">
                                         Terisi
                                     </span>
                                 @else
                                     <span
-                                        class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-[#B8845A]/90 backdrop-blur-md text-[#FAF6EE]">
+                                        class="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#B8845A]/90 backdrop-blur-md text-[#FAF6EE]">
                                         Konfirmasi
                                     </span>
                                 @endif
@@ -155,14 +155,14 @@
 
                             <!-- Navigasi Foto -->
                             <button type="button" x-show="photos.length > 1" x-on:click.stop="prev()"
-                                class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-[#2D231C]/35 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/55 flex items-center justify-center opacity-0 group-hover:opacity-100 transition cursor-pointer">
+                                class="absolute left-2.5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-[#2D231C]/40 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/60 flex items-center justify-center opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition cursor-pointer">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
                                         d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
                             <button type="button" x-show="photos.length > 1" x-on:click.stop="next()"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-[#2D231C]/35 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/55 flex items-center justify-center opacity-0 group-hover:opacity-100 transition cursor-pointer">
+                                class="absolute right-2.5 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-[#2D231C]/40 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/60 flex items-center justify-center opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition cursor-pointer">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
                                         d="M9 5l7 7-7 7" />
@@ -181,38 +181,38 @@
                             </div>
                         </div>
 
-                        <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="p-4 sm:p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <div class="flex items-baseline justify-between gap-2">
-                                    <h3 class="text-lg font-bold text-[#2D231C]">
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-base sm:text-lg font-bold text-[#2D231C] leading-snug">
                                         {{ $room->name }}
                                     </h3>
                                     <span
-                                        class="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-[#EFE4D4] text-[#8F6547] shrink-0">
+                                        class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-[#EFE4D4] text-[#8F6547] shrink-0">
                                         #{{ $room->room_number }}
                                     </span>
                                 </div>
 
                                 @if ($room->size)
-                                    <p class="text-xs text-[#8C7D70] mt-0.5">Luas kamar {{ $room->size }}</p>
+                                    <p class="text-[11px] sm:text-xs text-[#8C7D70] mt-1">Luas kamar {{ $room->size }}</p>
                                 @endif
 
-                                <p class="text-sm text-[#6E5F53] mt-2.5 line-clamp-2 leading-relaxed">
+                                <p class="text-xs sm:text-sm text-[#6E5F53] mt-2 line-clamp-2 leading-relaxed">
                                     {{ $room->description }}
                                 </p>
                             </div>
 
-                            <div class="mt-5 pt-4">
-                                <div class="flex items-baseline justify-between mb-4">
-                                    <div>
+                            <div class="mt-4 sm:mt-5 pt-3.5 border-t border-[#EFE4D4]/80">
+                                <div class="flex items-baseline justify-between gap-2 mb-3.5">
+                                    <div class="whitespace-nowrap">
                                         <span
-                                            class="text-lg font-bold text-[#2D231C]">{{ $room->formatted_monthly_price }}</span>
-                                        <span class="text-xs text-[#6E5F53]">/ bulan</span>
+                                            class="text-base sm:text-lg font-bold text-[#2D231C]">{{ $room->formatted_monthly_price }}</span>
+                                        <span class="text-[11px] sm:text-xs text-[#6E5F53]">/ bulan</span>
                                     </div>
                                     @if ($room->annual_price)
-                                        <span class="text-xs text-[#6E5F53]">
+                                        <span class="text-[11px] sm:text-xs text-[#6E5F53] text-right">
                                             Tahunan: <strong
-                                                class="text-[#2D231C]">{{ $room->formatted_annual_price }}</strong>
+                                                class="text-[#2D231C] whitespace-nowrap">{{ $room->formatted_annual_price }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -220,12 +220,12 @@
                                 <!-- TOMBOL LIHAT DETAIL + TOMBOL AJUKAN SEWA / CEK JADWAL -->
                                 <div class="flex items-center gap-2">
                                     <button type="button" wire:click="openBookingModal({{ $room->id }})"
-                                        class="flex-1 py-2.5 px-4 rounded-full font-semibold text-sm transition cursor-pointer
+                                        class="flex-1 py-2.5 px-3.5 rounded-full font-semibold text-xs sm:text-sm transition cursor-pointer text-center
                                             {{ $room->status === 'available' ? 'bg-[#A67B5B] text-[#FAF6EE] hover:bg-[#8F6547]' : 'bg-[#EFE4D4] text-[#8F6547] hover:bg-[#E4D5C0]' }}">
                                         {{ $room->status === 'available' ? 'Ajukan Sewa Kamar' : 'Cek Jadwal & Antri' }}
                                     </button>
                                     <button type="button" wire:click="openRoomDetailModal({{ $room->id }})"
-                                        class="px-4 py-2.5 rounded-full bg-[#F3ECE0] text-[#5C402C] hover:bg-[#EFE4D4] font-semibold text-sm inline-flex items-center justify-center gap-1.5 transition cursor-pointer shrink-0"
+                                        class="px-3.5 sm:px-4 py-2.5 rounded-full bg-[#F3ECE0] text-[#5C402C] hover:bg-[#EFE4D4] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-1.5 transition cursor-pointer shrink-0"
                                         title="Lihat Detail Kamar">
                                         <svg class="w-4 h-4 text-[#8F6547]" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
@@ -245,22 +245,22 @@
         @endif
     </section>
 
-    <!-- POP-UP MODAL DETAIL KAMAR  -->
+    <!-- POP-UP MODAL DETAIL KAMAR (SELALU DITENGAH) -->
     @if ($showRoomDetailModal && $detailRoom)
         @php $detailImages = $detailRoom->all_images_urls; @endphp
         @teleport('body')
             <div class="fixed inset-0 z-[9999] overflow-y-auto" role="dialog" aria-modal="true">
 
                 <!-- Backdrop Blur Penuh -->
-                <div class="fixed inset-0 bg-[#2D231C]/50 backdrop-blur-sm transition-opacity"
+                <div class="fixed inset-0 bg-[#2D231C]/55 backdrop-blur-xs transition-opacity"
                     wire:click="closeRoomDetailModal"></div>
 
-                <!-- Wrapper Grid Presisi Tengah Vertikal & Horizontal -->
-                <div class="relative z-10 min-h-screen w-full grid place-items-center p-4 sm:p-6">
+                <!-- Wrapper Tengah Vertikal & Horizontal -->
+                <div class="relative z-10 min-h-dvh w-full flex items-center justify-center p-3 sm:p-6">
 
                     <!-- Kotak Modal Tengah -->
                     <div
-                        class="w-full max-w-lg max-h-[82vh] flex flex-col rounded-2xl bg-[#FAF6EE] shadow-2xl overflow-hidden text-left">
+                        class="w-full max-w-lg max-h-[86dvh] flex flex-col rounded-2xl sm:rounded-3xl bg-[#FAF6EE] shadow-2xl overflow-hidden text-left">
 
                         <!-- 1. GAMBAR SLIDER -->
                         <div x-data="{
@@ -271,7 +271,7 @@
                             prev() { this.active = (this.active - 1 + this.images.length) % this.images.length }
                         }" x-on:touchstart="touchStartX = $event.changedTouches[0].screenX"
                             x-on:touchend="let diff = touchStartX - $event.changedTouches[0].screenX; if (Math.abs(diff) > 40) { diff > 0 ? next() : prev() }"
-                            class="relative h-48 sm:h-52 w-full bg-[#EFE4D4] shrink-0 select-none overflow-hidden">
+                            class="relative h-44 sm:h-52 w-full bg-[#EFE4D4] shrink-0 select-none overflow-hidden">
 
                             <template x-for="(img, idx) in images" :key="idx">
                                 <img x-show="active === idx" :src="img" alt="{{ $detailRoom->name }}"
@@ -280,31 +280,31 @@
 
                             <!-- Gradient halus atas & bawah -->
                             <div
-                                class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/35 to-transparent pointer-events-none">
+                                class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/40 to-transparent pointer-events-none">
                             </div>
                             <div
-                                class="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/40 to-transparent pointer-events-none">
+                                class="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/45 to-transparent pointer-events-none">
                             </div>
 
-                            <!-- Badge Tipe -->
-                            <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
+                            <!-- Badge Tipe & Status -->
+                            <div class="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 flex items-center gap-1.5 flex-wrap pr-10">
                                 <span
-                                    class="px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#2D231C]/40 backdrop-blur-md text-[#FAF6EE]">
-                                    {{ $detailRoom->room_type }} • Lantai {{ $detailRoom->floor }}
+                                    class="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-[#2D231C]/50 backdrop-blur-md text-[#FAF6EE]">
+                                    {{ $detailRoom->room_type }} • Lt. {{ $detailRoom->floor }}
                                 </span>
                                 @if ($detailRoom->status === 'available')
                                     <span
-                                        class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-[#5B8552]/90 backdrop-blur-md text-[#FAF6EE]">
+                                        class="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#5B8552]/90 backdrop-blur-md text-[#FAF6EE]">
                                         Tersedia
                                     </span>
                                 @elseif($detailRoom->status === 'occupied')
                                     <span
-                                        class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-[#2D231C]/65 backdrop-blur-md text-[#FAF6EE]">
+                                        class="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#2D231C]/70 backdrop-blur-md text-[#FAF6EE]">
                                         Terisi
                                     </span>
                                 @else
                                     <span
-                                        class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-[#B8845A]/90 backdrop-blur-md text-[#FAF6EE]">
+                                        class="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#B8845A]/90 backdrop-blur-md text-[#FAF6EE]">
                                         Konfirmasi
                                     </span>
                                 @endif
@@ -312,7 +312,7 @@
 
                             <!-- Tombol Close (Kanan Atas) -->
                             <button type="button" wire:click="closeRoomDetailModal"
-                                class="absolute top-3.5 right-3.5 z-10 w-8 h-8 rounded-full  bg-[#2D231C]/35 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/55 flex items-center justify-center transition cursor-pointer"
+                                class="absolute top-3 right-3 sm:top-3.5 sm:right-3.5 z-10 w-8 h-8 rounded-full bg-[#2D231C]/45 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/65 flex items-center justify-center transition cursor-pointer"
                                 title="Tutup">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
@@ -322,14 +322,14 @@
 
                             <!-- Panah Kiri / Kanan -->
                             <button type="button" x-show="images.length > 1" x-on:click="prev()"
-                                class="absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#2D231C]/35 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/55 flex items-center justify-center cursor-pointer transition">
+                                class="absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#2D231C]/40 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/60 flex items-center justify-center cursor-pointer transition">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
                                         d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
                             <button type="button" x-show="images.length > 1" x-on:click="next()"
-                                class="absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#2D231C]/35 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/55 flex items-center justify-center cursor-pointer transition">
+                                class="absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#2D231C]/40 backdrop-blur-md text-[#FAF6EE] hover:bg-[#2D231C]/60 flex items-center justify-center cursor-pointer transition">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
                                         d="M9 5l7 7-7 7" />
@@ -340,7 +340,7 @@
                             <div x-show="images.length > 1"
                                 class="absolute bottom-2.5 inset-x-3.5 z-10 flex items-center justify-between">
                                 <span
-                                    class="px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-semibold">
+                                    class="px-2.5 py-0.5 rounded-full bg-black/35 backdrop-blur-md text-white text-[10px] font-semibold">
                                     Foto <span x-text="active + 1"></span> dari <span x-text="images.length"></span>
                                 </span>
                                 <div class="flex items-center gap-1.5">
@@ -355,7 +355,7 @@
 
                         <!-- 2. KONTEN DETAIL -->
                         <div
-                            class="p-5 space-y-4 overflow-y-auto flex-1 text-xs
+                            class="p-4 sm:p-5 space-y-3.5 sm:space-y-4 overflow-y-auto flex-1 text-xs
                                 [&::-webkit-scrollbar]:w-1.5
                                 [&::-webkit-scrollbar-track]:bg-transparent
                                 [&::-webkit-scrollbar-thumb]:bg-[#D5C6B2]
@@ -365,7 +365,7 @@
                             <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                                 <div>
                                     <div class="flex items-center gap-2 flex-wrap">
-                                        <h3 class="text-base font-extrabold text-[#5C402C] leading-snug">
+                                        <h3 class="text-sm sm:text-base font-extrabold text-[#5C402C] leading-snug">
                                             {{ $detailRoom->name }}</h3>
                                         <span
                                             class="px-2 py-0.5 rounded-md bg-[#EFE4D4] text-[#8F6547] font-mono font-bold text-[10px]">
@@ -374,34 +374,36 @@
                                     </div>
                                     <p class="text-[11px] text-[#8F6547] mt-0.5">
                                         Luas kamar <strong class="text-[#5C402C]">{{ $detailRoom->size }}</strong> •
-                                        Berada di <strong class="text-[#5C402C]">Lantai {{ $detailRoom->floor }}</strong>
+                                        Lantai <strong class="text-[#5C402C]">{{ $detailRoom->floor }}</strong>
                                     </p>
                                 </div>
 
                                 <div class="sm:text-right shrink-0">
-                                    <div class="text-base font-extrabold text-[#5C402C]">
+                                    <div class="text-sm sm:text-base font-extrabold text-[#5C402C] whitespace-nowrap">
                                         {{ $detailRoom->formatted_monthly_price }}<span
                                             class="text-[11px] font-normal text-[#8F6547]"> /bulan</span>
                                     </div>
                                     @if ($detailRoom->annual_price)
-                                        <span class="text-[10px] text-[#8F6547] block">Tarif Tahunan:
+                                        <span class="text-[10px] text-[#8F6547] block">Tahunan:
                                             {{ $detailRoom->formatted_annual_price }}</span>
                                     @endif
                                 </div>
                             </div>
 
                             @if ($detailRoom->description)
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-[#8F6547] block my-2">
-                                    Deskripsi Kamar
-                                </span>
-                                <div
-                                    class="p-3.5 rounded-xl bg-[#F3ECE0] text-[#5C402C] text-xs leading-relaxed break-words">
-                                    <p>{{ trim($detailRoom->description) }}</p>
+                                <div>
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-[#8F6547] block mb-1.5">
+                                        Deskripsi Kamar
+                                    </span>
+                                    <div
+                                        class="p-3 rounded-xl bg-[#F3ECE0] text-[#5C402C] text-xs leading-relaxed break-words">
+                                        <p>{{ trim($detailRoom->description) }}</p>
+                                    </div>
                                 </div>
                             @endif
 
                             <div>
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-[#8F6547] block mb-2">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-[#8F6547] block mb-1.5">
                                     Fasilitas Kamar
                                 </span>
 
@@ -426,13 +428,13 @@
                         </div>
 
                         <!-- 3. FOOTER AKSI -->
-                        <div class="px-5 py-3.5 bg-[#F3ECE0]/70 flex items-center justify-end gap-2.5 shrink-0">
+                        <div class="px-4 sm:px-5 py-3 bg-[#F3ECE0]/80 flex items-center justify-end gap-2 shrink-0">
                             <button type="button" wire:click="closeRoomDetailModal"
                                 class="px-4 py-2 rounded-full bg-[#EFE4D4] text-[#5C402C] font-semibold text-xs hover:bg-[#E2D6C3] transition cursor-pointer">
                                 Tutup
                             </button>
                             <button type="button" wire:click="bookFromDetail({{ $detailRoom->id }})"
-                                class="px-5 py-2 rounded-full bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer">
+                                class="px-4 sm:px-5 py-2 rounded-full bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer">
                                 {{ $detailRoom->status === 'available' ? 'Ajukan Sewa' : 'Antri Sewa Kamar' }}
                             </button>
                         </div>
@@ -443,233 +445,236 @@
         @endteleport
     @endif
 
-    <!-- Modal Pengajuan Sewa -->
+    <!-- MODAL PENGAJUAN SEWA (SELALU DITENGAH) -->
     @if ($showBookingModal && $selectedRoom)
-        <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
-            aria-modal="true">
-            <div class="fixed inset-0 bg-[#2D231C]/60 backdrop-blur-xs transition-opacity"
-                wire:click="closeBookingModal"></div>
+        @teleport('body')
+            <div class="fixed inset-0 z-[9999] overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+                aria-modal="true">
+                <div class="fixed inset-0 bg-[#2D231C]/60 backdrop-blur-xs transition-opacity"
+                    wire:click="closeBookingModal"></div>
 
-            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-                <div
-                    class="relative transform overflow-hidden rounded-3xl bg-[#FAF6EE] text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-2xl">
+                <div class="relative z-10 min-h-dvh w-full flex items-center justify-center p-3 sm:p-6">
+                    <div
+                        class="w-full max-w-2xl max-h-[88dvh] flex flex-col transform overflow-hidden rounded-2xl sm:rounded-3xl bg-[#FAF6EE] text-left shadow-2xl transition-all">
 
-                    <div class="px-6 py-4 bg-[#3B2E25] text-[#FAF6EE] flex items-center justify-between">
-                        <div>
-                            <span class="text-[11px] font-semibold text-[#DEC3AC] uppercase tracking-wider">Pengajuan
-                                Sewa Kamar</span>
-                            <h3 class="text-base font-bold text-[#FAF6EE]">{{ $selectedRoom->name }} — Kamar
-                                {{ $selectedRoom->room_number }}</h3>
+                        <div class="px-4 sm:px-6 py-3.5 sm:py-4 bg-[#3B2E25] text-[#FAF6EE] flex items-center justify-between gap-3 shrink-0">
+                            <div class="min-w-0">
+                                <span class="text-[10px] sm:text-[11px] font-semibold text-[#DEC3AC] uppercase tracking-wider block">Pengajuan
+                                    Sewa Kamar</span>
+                                <h3 class="text-sm sm:text-base font-bold text-[#FAF6EE] truncate">{{ $selectedRoom->name }} — Kamar
+                                    {{ $selectedRoom->room_number }}</h3>
+                            </div>
+                            <button type="button" wire:click="closeBookingModal"
+                                class="text-[#C4B4A5] hover:text-[#FAF6EE] p-1 rounded-full shrink-0 cursor-pointer">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
                         </div>
-                        <button wire:click="closeBookingModal" class="text-[#C4B4A5] hover:text-[#FAF6EE] p-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
 
-                    <div class="p-6 space-y-5">
-                        @if (session()->has('booking_error'))
-                            <div class="p-3.5 rounded-2xl bg-rose-50 text-rose-800 text-sm">
-                                {{ session('booking_error') }}
-                            </div>
-                        @endif
-
-                        @if ($bookingSuccess && $createdBooking)
-                            <div class="py-4 space-y-4">
-                                <div
-                                    class="inline-flex items-center px-3 py-1 rounded-full bg-[#EFE4D4] text-[#8F6547] text-xs font-bold">
-                                    Pengajuan Tercatat
-                                </div>
-                                <h4 class="text-xl font-bold text-[#2D231C]">Booking Berhasil Dibuat</h4>
-                                <p class="text-sm text-[#6E5F53] leading-relaxed">
-                                    @if ($createdBooking->status === 'waiting_renewal_confirmation')
-                                        Pengajuan Anda masuk ke daftar tunggu. Pembayaran baru perlu dilakukan setelah
-                                        penghuni saat ini mengonfirmasi tanggal keluar.
-                                    @else
-                                        Kode booking Anda adalah <span
-                                            class="font-mono font-bold text-[#8F6547] bg-[#EFE4D4] px-2.5 py-0.5 rounded-full">{{ $createdBooking->booking_code }}</span>.
-                                        Silakan lanjutkan pembayaran melalui halaman tagihan penyewa.
-                                    @endif
-                                </p>
-
-                                <div class="p-4 rounded-2xl bg-[#F3ECE0] text-xs space-y-2">
-                                    <div class="flex justify-between"><span class="text-[#6E5F53]">Kamar</span>
-                                        <strong class="text-[#2D231C]">{{ $selectedRoom->room_number }}
-                                            ({{ $selectedRoom->room_type }})</strong>
-                                    </div>
-                                    <div class="flex justify-between"><span class="text-[#6E5F53]">Periode Sewa</span>
-                                        <strong
-                                            class="text-[#2D231C]">{{ $createdBooking->start_date->format('d M Y') }}
-                                            – {{ $createdBooking->end_date->format('d M Y') }}</strong>
-                                    </div>
-                                    <div class="flex justify-between"><span class="text-[#6E5F53]">Skema Bayar</span>
-                                        <strong
-                                            class="text-[#2D231C]">{{ $createdBooking->payment_scheme === 'dp' ? 'DP 50%' : 'Lunas' }}</strong>
-                                    </div>
-                                    <div class="flex justify-between"><span class="text-[#6E5F53]">Total Biaya</span>
-                                        <strong
-                                            class="text-[#8F6547] font-bold">{{ $createdBooking->formatted_total_price }}</strong>
-                                    </div>
-                                </div>
-
-                                <div class="pt-3 flex flex-col sm:flex-row gap-2.5">
-                                    <a href="{{ route('tenant.dashboard') }}"
-                                        class="px-5 py-2.5 rounded-full bg-[#A67B5B] text-[#FAF6EE] font-semibold text-sm text-center hover:bg-[#8F6547] transition">
-                                        Ke Dashboard Penyewa
-                                    </a>
-                                    <a href="{{ route('tenant.payments') }}"
-                                        class="px-5 py-2.5 rounded-full text-[#2D231C] font-semibold text-sm text-center hover:bg-[#F3ECE0] transition">
-                                        Upload Bukti Transfer
-                                    </a>
-                                </div>
-                            </div>
-                        @else
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-semibold text-[#2D231C] mb-1">Tanggal Mulai Sewa
-                                        <span class="text-rose-600">*</span></label>
-                                    <input type="date" wire:model.live="startDate"
-                                        class="w-full px-3.5 py-2 rounded-xl bg-[#F3ECE0] text-sm outline-none">
-                                    @error('startDate')
-                                        <span class="text-xs text-rose-600">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div>
-                                    <label class="block text-xs font-semibold text-[#2D231C] mb-1">Durasi Sewa <span
-                                            class="text-rose-600">*</span></label>
-                                    <select wire:model.live="durationMonths"
-                                        class="w-full px-3.5 py-2 rounded-xl bg-[#F3ECE0] text-sm outline-none">
-                                        <option value="1">1 Bulan</option>
-                                        <option value="3">3 Bulan</option>
-                                        <option value="6">6 Bulan</option>
-                                        <option value="12">12 Bulan (1 Tahun)</option>
-                                        <option value="24">24 Bulan (2 Tahun)</option>
-                                    </select>
-                                    @error('durationMonths')
-                                        <span class="text-xs text-rose-600">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            @if ($hasConflict)
-                                <div class="p-4 rounded-2xl bg-rose-50 text-rose-900 space-y-1.5">
-                                    <p class="font-bold text-sm text-rose-800">Jadwal Kamar Tidak Tersedia di Tanggal
-                                        Ini</p>
-                                    <p class="text-xs leading-relaxed text-rose-700">{{ $conflictMessage }}</p>
-                                    <p class="text-xs font-medium text-rose-800 pt-1">
-                                        Pilih tanggal mulai setelah <strong>{{ $currentOccupantEndDate }}</strong>
-                                        untuk masuk ke daftar antrian kamar ini.
-                                    </p>
+                        <div class="p-4 sm:p-6 space-y-4 sm:space-y-5 overflow-y-auto flex-1">
+                            @if (session()->has('booking_error'))
+                                <div class="p-3.5 rounded-2xl bg-rose-50 text-rose-800 text-xs sm:text-sm">
+                                    {{ session('booking_error') }}
                                 </div>
                             @endif
 
-                            @if ($isWaitingList && !$hasConflict)
-                                <div class="p-4 rounded-2xl bg-[#EFE4D4]  text-[#6E4D36] space-y-1.5">
-                                    <p class="font-bold text-sm">Masuk Daftar Tunggu (Waiting List)</p>
-                                    <p class="text-xs leading-relaxed">{{ $waitingListExplanation }}</p>
-                                    <p class="text-[11px] opacity-85">
-                                        Tagihan belum perlu dibayar sebelum penghuni sebelumnya mengonfirmasi
-                                        kepindahan.
-                                    </p>
-                                </div>
-                            @endif
-
-                            <div>
-                                <label class="block text-xs font-semibold text-[#2D231C] mb-2">Skema Pembayaran</label>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <label
-                                        class="flex items-start gap-3 p-3.5 rounded-2xl cursor-pointer transition {{ $paymentScheme === 'full' ? 'bg-[#EFE4D4]/75' : 'bg-[#F3ECE0]/60 hover:bg-[#EFE4D4]/40' }}">
-                                        <input type="radio" wire:model.live="paymentScheme" value="full"
-                                            class="mt-0.5 accent-[#A67B5B]">
-                                        <div>
-                                            <p class="text-sm font-semibold text-[#2D231C]">Bayar Lunas (100%)</p>
-                                            <p class="text-xs text-[#6E5F53]">Pelunasan penuh di awal sewa</p>
-                                        </div>
-                                    </label>
-
-                                    <label
-                                        class="flex items-start gap-3 p-3.5 rounded-2xl cursor-pointer transition {{ $paymentScheme === 'dp' ? 'bg-[#EFE4D4]/75' : 'bg-[#F3ECE0]/60 hover:bg-[#EFE4D4]/40' }}">
-                                        <input type="radio" wire:model.live="paymentScheme" value="dp"
-                                            class="mt-0.5 accent-[#A67B5B]">
-                                        <div>
-                                            <p class="text-sm font-semibold text-[#2D231C]">Down Payment (DP 50%)</p>
-                                            <p class="text-xs text-[#6E5F53]">Sisa dilunasi sebelum masuk</p>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="p-4 rounded-2xl bg-[#F3ECE0] space-y-2 text-xs">
-                                <div class="flex justify-between text-[#6E5F53]">
-                                    <span>Tanggal Selesai Sewa</span>
-                                    <span class="font-semibold text-[#2D231C]">{{ $calculatedEndDate ?: '-' }}</span>
-                                </div>
-                                <div class="flex justify-between text-[#6E5F53]">
-                                    <span>Total Biaya Sewa</span>
-                                    <span class="font-bold text-sm text-[#2D231C]">Rp
-                                        {{ number_format($calculatedTotalPrice, 0, ',', '.') }}</span>
-                                </div>
-                                @if ($paymentScheme === 'dp')
-                                    <div class="pt-2 flex justify-between text-[#8F6547] font-semibold">
-                                        <span>Pembayaran DP (50%)</span>
-                                        <span>Rp {{ number_format($calculatedDpAmount, 0, ',', '.') }}</span>
+                            @if ($bookingSuccess && $createdBooking)
+                                <div class="py-2 sm:py-4 space-y-4">
+                                    <div
+                                        class="inline-flex items-center px-3 py-1 rounded-full bg-[#EFE4D4] text-[#8F6547] text-xs font-bold">
+                                        Pengajuan Tercatat
                                     </div>
-                                    <div class="flex justify-between text-[#6E5F53]">
-                                        <span>Sisa Pelunasan</span>
-                                        <span class="font-semibold">Rp
-                                            {{ number_format($calculatedRemainingAmount, 0, ',', '.') }}</span>
+                                    <h4 class="text-lg sm:text-xl font-bold text-[#2D231C]">Booking Berhasil Dibuat</h4>
+                                    <p class="text-xs sm:text-sm text-[#6E5F53] leading-relaxed">
+                                        @if ($createdBooking->status === 'waiting_renewal_confirmation')
+                                            Pengajuan Anda masuk ke daftar tunggu. Pembayaran baru perlu dilakukan setelah
+                                            penghuni saat ini mengonfirmasi tanggal keluar.
+                                        @else
+                                            Kode booking Anda adalah <span
+                                                class="font-mono font-bold text-[#8F6547] bg-[#EFE4D4] px-2.5 py-0.5 rounded-full">{{ $createdBooking->booking_code }}</span>.
+                                            Silakan lanjutkan pembayaran melalui halaman tagihan penyewa.
+                                        @endif
+                                    </p>
+
+                                    <div class="p-4 rounded-2xl bg-[#F3ECE0] text-xs space-y-2">
+                                        <div class="flex justify-between gap-2"><span class="text-[#6E5F53]">Kamar</span>
+                                            <strong class="text-[#2D231C] text-right">{{ $selectedRoom->room_number }}
+                                                ({{ $selectedRoom->room_type }})</strong>
+                                        </div>
+                                        <div class="flex justify-between gap-2"><span class="text-[#6E5F53]">Periode Sewa</span>
+                                            <strong
+                                                class="text-[#2D231C] text-right">{{ $createdBooking->start_date->format('d M Y') }}
+                                                – {{ $createdBooking->end_date->format('d M Y') }}</strong>
+                                        </div>
+                                        <div class="flex justify-between gap-2"><span class="text-[#6E5F53]">Skema Bayar</span>
+                                            <strong
+                                                class="text-[#2D231C]">{{ $createdBooking->payment_scheme === 'dp' ? 'DP 50%' : 'Lunas' }}</strong>
+                                        </div>
+                                        <div class="flex justify-between gap-2"><span class="text-[#6E5F53]">Total Biaya</span>
+                                            <strong
+                                                class="text-[#8F6547] font-bold">{{ $createdBooking->formatted_total_price }}</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="pt-2 flex flex-col sm:flex-row gap-2.5">
+                                        <a href="{{ route('tenant.dashboard') }}"
+                                            class="px-5 py-2.5 rounded-full bg-[#A67B5B] text-[#FAF6EE] font-semibold text-xs sm:text-sm text-center hover:bg-[#8F6547] transition">
+                                            Ke Dashboard Penyewa
+                                        </a>
+                                        <a href="{{ route('tenant.payments') }}"
+                                            class="px-5 py-2.5 rounded-full text-[#2D231C] font-semibold text-xs sm:text-sm text-center hover:bg-[#F3ECE0] transition">
+                                            Upload Bukti Transfer
+                                        </a>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-[#2D231C] mb-1">Tanggal Mulai Sewa
+                                            <span class="text-rose-600">*</span></label>
+                                        <input type="date" wire:model.live="startDate"
+                                            class="w-full px-3.5 py-2 rounded-xl bg-[#F3ECE0] text-xs sm:text-sm outline-none">
+                                        @error('startDate')
+                                            <span class="text-xs text-rose-600">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-semibold text-[#2D231C] mb-1">Durasi Sewa <span
+                                                class="text-rose-600">*</span></label>
+                                        <select wire:model.live="durationMonths"
+                                            class="w-full px-3.5 py-2 rounded-xl bg-[#F3ECE0] text-xs sm:text-sm outline-none">
+                                            <option value="1">1 Bulan</option>
+                                            <option value="3">3 Bulan</option>
+                                            <option value="6">6 Bulan</option>
+                                            <option value="12">12 Bulan (1 Tahun)</option>
+                                            <option value="24">24 Bulan (2 Tahun)</option>
+                                        </select>
+                                        @error('durationMonths')
+                                            <span class="text-xs text-rose-600">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                @if ($hasConflict)
+                                    <div class="p-3.5 sm:p-4 rounded-2xl bg-rose-50 text-rose-900 space-y-1.5">
+                                        <p class="font-bold text-xs sm:text-sm text-rose-800">Jadwal Kamar Tidak Tersedia di Tanggal
+                                            Ini</p>
+                                        <p class="text-xs leading-relaxed text-rose-700">{{ $conflictMessage }}</p>
+                                        <p class="text-xs font-medium text-rose-800 pt-1">
+                                            Pilih tanggal mulai setelah <strong>{{ $currentOccupantEndDate }}</strong>
+                                            untuk masuk ke daftar antrian kamar ini.
+                                        </p>
                                     </div>
                                 @endif
-                            </div>
 
-                            <div>
-                                <label class="block text-xs font-semibold text-[#2D231C] mb-1">Catatan
-                                    (Opsional)</label>
-                                <textarea wire:model="notes" rows="2" placeholder="Perkiraan jam kedatangan atau catatan tambahan..."
-                                    class="w-full px-3 py-2 rounded-xl bg-[#F3ECE0] text-xs outline-none"></textarea>
-                            </div>
+                                @if ($isWaitingList && !$hasConflict)
+                                    <div class="p-3.5 sm:p-4 rounded-2xl bg-[#EFE4D4] text-[#6E4D36] space-y-1.5">
+                                        <p class="font-bold text-xs sm:text-sm">Masuk Daftar Tunggu (Waiting List)</p>
+                                        <p class="text-xs leading-relaxed">{{ $waitingListExplanation }}</p>
+                                        <p class="text-[11px] opacity-85">
+                                            Tagihan belum perlu dibayar sebelum penghuni sebelumnya mengonfirmasi
+                                            kepindahan.
+                                        </p>
+                                    </div>
+                                @endif
 
-                            <div class="pt-3 flex items-center justify-end gap-2.5">
-                                <button type="button" wire:click="closeBookingModal"
-                                    class="px-4 py-2 rounded-full text-[#2D231C] font-medium text-xs hover:bg-[#F3ECE0]">
-                                    Batal
-                                </button>
+                                <div>
+                                    <label class="block text-xs font-semibold text-[#2D231C] mb-2">Skema Pembayaran</label>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                                        <label
+                                            class="flex items-start gap-3 p-3 sm:p-3.5 rounded-2xl cursor-pointer transition {{ $paymentScheme === 'full' ? 'bg-[#EFE4D4]/75' : 'bg-[#F3ECE0]/60 hover:bg-[#EFE4D4]/40' }}">
+                                            <input type="radio" wire:model.live="paymentScheme" value="full"
+                                                class="mt-0.5 accent-[#A67B5B]">
+                                            <div>
+                                                <p class="text-xs sm:text-sm font-semibold text-[#2D231C]">Bayar Lunas (100%)</p>
+                                                <p class="text-[11px] sm:text-xs text-[#6E5F53]">Pelunasan penuh di awal sewa</p>
+                                            </div>
+                                        </label>
 
-                                <button type="button" wire:click="submitBooking"
-                                    {{ $hasConflict ? 'disabled' : '' }}
-                                    class="px-5 py-2 rounded-full font-semibold text-xs text-[#FAF6EE] transition
-                                        {{ $hasConflict ? 'bg-stone-400 cursor-not-allowed' : 'bg-[#A67B5B] hover:bg-[#8F6547]' }}">
-                                    @if ($hasConflict)
-                                        Pilih Tanggal Lain
-                                    @elseif($isWaitingList)
-                                        Masuk Daftar Antrian
-                                    @else
-                                        Kirim Pengajuan Sewa
+                                        <label
+                                            class="flex items-start gap-3 p-3 sm:p-3.5 rounded-2xl cursor-pointer transition {{ $paymentScheme === 'dp' ? 'bg-[#EFE4D4]/75' : 'bg-[#F3ECE0]/60 hover:bg-[#EFE4D4]/40' }}">
+                                            <input type="radio" wire:model.live="paymentScheme" value="dp"
+                                                class="mt-0.5 accent-[#A67B5B]">
+                                            <div>
+                                                <p class="text-xs sm:text-sm font-semibold text-[#2D231C]">Down Payment (DP 50%)</p>
+                                                <p class="text-[11px] sm:text-xs text-[#6E5F53]">Sisa dilunasi sebelum masuk</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="p-3.5 sm:p-4 rounded-2xl bg-[#F3ECE0] space-y-2 text-xs">
+                                    <div class="flex justify-between text-[#6E5F53]">
+                                        <span>Tanggal Selesai Sewa</span>
+                                        <span class="font-semibold text-[#2D231C]">{{ $calculatedEndDate ?: '-' }}</span>
+                                    </div>
+                                    <div class="flex justify-between text-[#6E5F53]">
+                                        <span>Total Biaya Sewa</span>
+                                        <span class="font-bold text-sm text-[#2D231C]">Rp
+                                            {{ number_format($calculatedTotalPrice, 0, ',', '.') }}</span>
+                                    </div>
+                                    @if ($paymentScheme === 'dp')
+                                        <div class="pt-2 flex justify-between text-[#8F6547] font-semibold">
+                                            <span>Pembayaran DP (50%)</span>
+                                            <span>Rp {{ number_format($calculatedDpAmount, 0, ',', '.') }}</span>
+                                        </div>
+                                        <div class="flex justify-between text-[#6E5F53]">
+                                            <span>Sisa Pelunasan</span>
+                                            <span class="font-semibold">Rp
+                                                {{ number_format($calculatedRemainingAmount, 0, ',', '.') }}</span>
+                                        </div>
                                     @endif
-                                </button>
-                            </div>
-                        @endif
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-[#2D231C] mb-1">Catatan
+                                        (Opsional)</label>
+                                    <textarea wire:model="notes" rows="2" placeholder="Perkiraan jam kedatangan atau catatan tambahan..."
+                                        class="w-full px-3 py-2 rounded-xl bg-[#F3ECE0] text-xs outline-none"></textarea>
+                                </div>
+
+                                <div class="pt-2 flex items-center justify-end gap-2.5">
+                                    <button type="button" wire:click="closeBookingModal"
+                                        class="px-4 py-2 rounded-full text-[#2D231C] font-medium text-xs hover:bg-[#F3ECE0] cursor-pointer">
+                                        Batal
+                                    </button>
+
+                                    <button type="button" wire:click="submitBooking"
+                                        {{ $hasConflict ? 'disabled' : '' }}
+                                        class="px-5 py-2 rounded-full font-semibold text-xs text-[#FAF6EE] transition cursor-pointer
+                                            {{ $hasConflict ? 'bg-stone-400 cursor-not-allowed' : 'bg-[#A67B5B] hover:bg-[#8F6547]' }}">
+                                        @if ($hasConflict)
+                                            Pilih Tanggal Lain
+                                        @elseif($isWaitingList)
+                                            Masuk Daftar Antrian
+                                        @else
+                                            Kirim Pengajuan Sewa
+                                        @endif
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endteleport
     @endif
 
     <!-- SECTION FASILITAS KOST-->
-    <section id="keunggulan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-7">
+    <section id="keunggulan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-3 mb-5 sm:mb-7">
             <div>
                 <h2 class="text-xl sm:text-2xl font-bold text-[#2D231C] tracking-tight">Fasilitas Kost</h2>
                 <p class="text-xs sm:text-sm text-[#6E5F53] mt-1">Kenyamanan bersama untuk seluruh penghuni</p>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            <div class="bg-[#FAF6EE] rounded-2xl p-5 shadow-2xs transition">
-                <div class="flex items-center gap-3 mb-2.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
+            <div class="bg-[#FAF6EE] rounded-2xl p-4 sm:p-5 shadow-2xs transition">
+                <div class="flex items-center gap-3 mb-2">
                     <div
                         class="w-9 h-9 rounded-xl bg-[#EFE4D4] text-[#A67B5B] flex items-center justify-center shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -682,8 +687,8 @@
                 <p class="text-xs text-[#6E5F53] leading-relaxed">Gerbang kartu & CCTV aktif sepanjang hari.</p>
             </div>
 
-            <div class="bg-[#FAF6EE] rounded-2xl p-5 shadow-2xs transition">
-                <div class="flex items-center gap-3 mb-2.5">
+            <div class="bg-[#FAF6EE] rounded-2xl p-4 sm:p-5 shadow-2xs transition">
+                <div class="flex items-center gap-3 mb-2">
                     <div
                         class="w-9 h-9 rounded-xl bg-[#EFE4D4] text-[#A67B5B] flex items-center justify-center shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -696,8 +701,8 @@
                 <p class="text-xs text-[#6E5F53] leading-relaxed">Koneksi fiber stabil untuk kerja & kuliah.</p>
             </div>
 
-            <div class="bg-[#FAF6EE] rounded-2xl p-5 shadow-2xs transition">
-                <div class="flex items-center gap-3 mb-2.5">
+            <div class="bg-[#FAF6EE] rounded-2xl p-4 sm:p-5 shadow-2xs transition">
+                <div class="flex items-center gap-3 mb-2">
                     <div
                         class="w-9 h-9 rounded-xl bg-[#EFE4D4] text-[#A67B5B] flex items-center justify-center shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -712,8 +717,8 @@
                 <p class="text-xs text-[#6E5F53] leading-relaxed">Lapor kendala kamar langsung dari akun.</p>
             </div>
 
-            <div class="bg-[#FAF6EE] rounded-2xl p-5 shadow-2xs transition">
-                <div class="flex items-center gap-3 mb-2.5">
+            <div class="bg-[#FAF6EE] rounded-2xl p-4 sm:p-5 shadow-2xs transition">
+                <div class="flex items-center gap-3 mb-2">
                     <div
                         class="w-9 h-9 rounded-xl bg-[#EFE4D4] text-[#A67B5B] flex items-center justify-center shrink-0">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -730,22 +735,22 @@
 
     <!-- SECTION ALUR SEWA -->
     <section id="alur-sewa" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-xl mx-auto mb-12">
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#2D231C] tracking-tight">Cara Booking & Sistem Antrian</h2>
+        <div class="text-center max-w-xl mx-auto mb-8 sm:mb-12">
+            <h2 class="text-xl sm:text-3xl font-bold text-[#2D231C] tracking-tight">Cara Booking & Sistem Antrian</h2>
             <p class="text-xs sm:text-sm text-[#6E5F53] mt-1.5">Ikuti 4 tahapan terstruktur mulai dari memilih kamar
                 hingga siap check-in.</p>
         </div>
 
-        <div class="space-y-0">
+        <div class="space-y-4 md:space-y-0">
             <!-- LANGKAH 1 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_72px_1fr] items-center gap-4 md:gap-0 pb-8 md:pb-0">
-                <!-- Card Kiri -->
-                <div class="bg-[#FAF6EE] rounded-2xl p-5 shadow-2xs transition">
-                    <div class="flex items-center gap-2 text-xs font-semibold text-[#8F6547] mb-1.5">
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_72px_1fr] items-center gap-3 md:gap-0">
+                <div class="bg-[#FAF6EE] rounded-2xl p-4 sm:p-5 shadow-2xs transition">
+                    <div class="flex items-center justify-between gap-2 text-xs font-semibold text-[#8F6547] mb-1.5">
                         <span>Langkah 1</span>
+                        <span class="md:hidden px-2 py-0.5 rounded-full bg-[#EFE4D4] text-[10px] font-bold">Tahap Pertama</span>
                     </div>
-                    <h4 class="text-base font-bold text-[#2D231C]">Pilih Kamar & Tanggal Masuk</h4>
-                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-3 text-[11px] text-[#6E5F53]">
+                    <h4 class="text-sm sm:text-base font-bold text-[#2D231C]">Pilih Kamar & Tanggal Masuk</h4>
+                    <div class="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 mt-2.5 text-[11px] text-[#6E5F53]">
                         <span class="inline-flex items-center gap-1">
                             <span class="w-2 h-2 rounded-full bg-[#A67B5B]"></span>
                             1–24 Bulan
@@ -759,9 +764,14 @@
                             Tanpa Chat Admin
                         </span>
                     </div>
+                    <div class="md:hidden mt-3 pt-3 border-t border-[#EFE4D4]">
+                        <p class="text-xs text-[#6E5F53] leading-relaxed">
+                            Buka katalog kamar, tinjau fasilitas serta foto tiap ruangan, lalu pilih tanggal mulai masuk dan
+                            durasi sewa sesuai kebutuhan Anda.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Garis & Nomor Tengah -->
                 <div class="hidden md:flex flex-col items-center self-stretch">
                     <div class="w-0.5 flex-1 bg-transparent"></div>
                     <div
@@ -771,15 +781,9 @@
                     <div class="w-0.5 flex-1 bg-[#DFD2BE]"></div>
                 </div>
 
-                <!-- Penjelasan Kanan -->
-                <div class="md:pl-4 md:py-6">
-                    <div class="flex items-center gap-2 md:hidden mb-1">
-                        <span
-                            class="w-6 h-6 rounded-full bg-[#EFE4D4] text-[#8F6547] font-bold text-xs inline-flex items-center justify-center">1</span>
-                        <span class="text-xs font-bold text-[#8F6547]">Tahap Pertama</span>
-                    </div>
-                    <h3 class="text-base sm:text-lg font-bold text-[#2D231C]">Tentukan Unit & Durasi Sewa</h3>
-                    <p class="text-xs sm:text-sm text-[#6E5F53] mt-1.5 leading-relaxed">
+                <div class="hidden md:block md:pl-4 md:py-6">
+                    <h3 class="text-lg font-bold text-[#2D231C]">Tentukan Unit & Durasi Sewa</h3>
+                    <p class="text-sm text-[#6E5F53] mt-1.5 leading-relaxed">
                         Buka katalog kamar, tinjau fasilitas serta foto tiap ruangan, lalu pilih tanggal mulai masuk dan
                         durasi sewa sesuai kebutuhan Anda.
                     </p>
@@ -787,14 +791,14 @@
             </div>
 
             <!-- LANGKAH 2 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_72px_1fr] items-center gap-4 md:gap-0 pb-8 md:pb-0">
-                <!-- Card Kiri -->
-                <div class="bg-[#FAF6EE] rounded-2xl p-5 shadow-2xs transition">
-                    <div class="flex items-center gap-2 text-xs font-semibold text-[#8F6547] mb-1.5">
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_72px_1fr] items-center gap-3 md:gap-0">
+                <div class="bg-[#FAF6EE] rounded-2xl p-4 sm:p-5 shadow-2xs transition">
+                    <div class="flex items-center justify-between gap-2 text-xs font-semibold text-[#8F6547] mb-1.5">
                         <span>Langkah 2</span>
+                        <span class="md:hidden px-2 py-0.5 rounded-full bg-[#EFE4D4] text-[10px] font-bold">Tahap Kedua</span>
                     </div>
-                    <h4 class="text-base font-bold text-[#2D231C]">Cek Bentrok & Antrian Otomatis</h4>
-                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-3 text-[11px] text-[#6E5F53]">
+                    <h4 class="text-sm sm:text-base font-bold text-[#2D231C]">Cek Bentrok & Antrian Otomatis</h4>
+                    <div class="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 mt-2.5 text-[11px] text-[#6E5F53]">
                         <span class="inline-flex items-center gap-1">
                             <span class="w-2 h-2 rounded-full bg-[#A67B5B]"></span>
                             Deteksi Jadwal
@@ -804,9 +808,14 @@
                             Opsi Waiting List
                         </span>
                     </div>
+                    <div class="md:hidden mt-3 pt-3 border-t border-[#EFE4D4]">
+                        <p class="text-xs text-[#6E5F53] leading-relaxed">
+                            Sistem mengecek jadwal penghuni aktif secara otomatis. Jika kamar sedang terisi, pengajuan Anda
+                            dicatat sebagai daftar tunggu setelah masa sewa penghuni lama selesai.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Garis & Nomor Tengah -->
                 <div class="hidden md:flex flex-col items-center self-stretch">
                     <div class="w-0.5 flex-1 bg-[#DFD2BE]"></div>
                     <div
@@ -816,15 +825,9 @@
                     <div class="w-0.5 flex-1 bg-[#DFD2BE]"></div>
                 </div>
 
-                <!-- Penjelasan Kanan -->
-                <div class="md:pl-4 md:py-6">
-                    <div class="flex items-center gap-2 md:hidden mb-1">
-                        <span
-                            class="w-6 h-6 rounded-full bg-[#EFE4D4] text-[#8F6547] font-bold text-xs inline-flex items-center justify-center">2</span>
-                        <span class="text-xs font-bold text-[#8F6547]">Tahap Kedua</span>
-                    </div>
-                    <h3 class="text-base sm:text-lg font-bold text-[#2D231C]">Validasi Ketersediaan Jadwal</h3>
-                    <p class="text-xs sm:text-sm text-[#6E5F53] mt-1.5 leading-relaxed">
+                <div class="hidden md:block md:pl-4 md:py-6">
+                    <h3 class="text-lg font-bold text-[#2D231C]">Validasi Ketersediaan Jadwal</h3>
+                    <p class="text-sm text-[#6E5F53] mt-1.5 leading-relaxed">
                         Sistem mengecek jadwal penghuni aktif secara otomatis. Jika kamar sedang terisi, pengajuan Anda
                         dicatat sebagai daftar tunggu setelah masa sewa penghuni lama selesai.
                     </p>
@@ -832,14 +835,14 @@
             </div>
 
             <!-- LANGKAH 3 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_72px_1fr] items-center gap-4 md:gap-0 pb-8 md:pb-0">
-                <!-- Card Kiri -->
-                <div class="bg-[#FAF6EE] rounded-2xl p-5 shadow-2xs transition">
-                    <div class="flex items-center gap-2 text-xs font-semibold text-[#8F6547] mb-1.5">
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_72px_1fr] items-center gap-3 md:gap-0">
+                <div class="bg-[#FAF6EE] rounded-2xl p-4 sm:p-5 shadow-2xs transition">
+                    <div class="flex items-center justify-between gap-2 text-xs font-semibold text-[#8F6547] mb-1.5">
                         <span>Langkah 3</span>
+                        <span class="md:hidden px-2 py-0.5 rounded-full bg-[#EFE4D4] text-[10px] font-bold">Tahap Ketiga</span>
                     </div>
-                    <h4 class="text-base font-bold text-[#2D231C]">Transfer & Unggah Bukti Bayar</h4>
-                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-3 text-[11px] text-[#6E5F53]">
+                    <h4 class="text-sm sm:text-base font-bold text-[#2D231C]">Transfer & Unggah Bukti Bayar</h4>
+                    <div class="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 mt-2.5 text-[11px] text-[#6E5F53]">
                         <span class="inline-flex items-center gap-1">
                             <span class="w-2 h-2 rounded-full bg-[#A67B5B]"></span>
                             Lunas 100%
@@ -849,9 +852,14 @@
                             Bisa DP 50%
                         </span>
                     </div>
+                    <div class="md:hidden mt-3 pt-3 border-t border-[#EFE4D4]">
+                        <p class="text-xs text-[#6E5F53] leading-relaxed">
+                            Transfer biaya sewa ke rekening resmi pengelola dan unggah bukti pembayaran langsung melalui
+                            dashboard penyewa dengan kode booking unik Anda.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Garis & Nomor Tengah -->
                 <div class="hidden md:flex flex-col items-center self-stretch">
                     <div class="w-0.5 flex-1 bg-[#DFD2BE]"></div>
                     <div
@@ -861,15 +869,9 @@
                     <div class="w-0.5 flex-1 bg-[#DFD2BE]"></div>
                 </div>
 
-                <!-- Penjelasan Kanan -->
-                <div class="md:pl-4 md:py-6">
-                    <div class="flex items-center gap-2 md:hidden mb-1">
-                        <span
-                            class="w-6 h-6 rounded-full bg-[#EFE4D4] text-[#8F6547] font-bold text-xs inline-flex items-center justify-center">3</span>
-                        <span class="text-xs font-bold text-[#8F6547]">Tahap Ketiga</span>
-                    </div>
-                    <h3 class="text-base sm:text-lg font-bold text-[#2D231C]">Pilih Skema Lunas atau DP 50%</h3>
-                    <p class="text-xs sm:text-sm text-[#6E5F53] mt-1.5 leading-relaxed">
+                <div class="hidden md:block md:pl-4 md:py-6">
+                    <h3 class="text-lg font-bold text-[#2D231C]">Pilih Skema Lunas atau DP 50%</h3>
+                    <p class="text-sm text-[#6E5F53] mt-1.5 leading-relaxed">
                         Transfer biaya sewa ke rekening resmi pengelola dan unggah bukti pembayaran langsung melalui
                         dashboard penyewa dengan kode booking unik Anda.
                     </p>
@@ -877,14 +879,14 @@
             </div>
 
             <!-- LANGKAH 4 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_72px_1fr] items-center gap-4 md:gap-0">
-                <!-- Card Kiri -->
-                <div class="bg-[#FAF6EE] rounded-2xl p-5 shadow-2xs transition">
-                    <div class="flex items-center gap-2 text-xs font-semibold text-[#8F6547] mb-1.5">
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_72px_1fr] items-center gap-3 md:gap-0">
+                <div class="bg-[#FAF6EE] rounded-2xl p-4 sm:p-5 shadow-2xs transition">
+                    <div class="flex items-center justify-between gap-2 text-xs font-semibold text-[#8F6547] mb-1.5">
                         <span>Langkah 4</span>
+                        <span class="md:hidden px-2 py-0.5 rounded-full bg-[#EFE4D4] text-[10px] font-bold">Tahap Keempat</span>
                     </div>
-                    <h4 class="text-base font-bold text-[#2D231C]">Verifikasi & Siap Check-in</h4>
-                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-3 text-[11px] text-[#6E5F53]">
+                    <h4 class="text-sm sm:text-base font-bold text-[#2D231C]">Verifikasi & Siap Check-in</h4>
+                    <div class="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 mt-2.5 text-[11px] text-[#6E5F53]">
                         <span class="inline-flex items-center gap-1">
                             <span class="w-2 h-2 rounded-full bg-[#5B8552]"></span>
                             Invoice PDF
@@ -894,9 +896,14 @@
                             Pengingat Perpanjangan
                         </span>
                     </div>
+                    <div class="md:hidden mt-3 pt-3 border-t border-[#EFE4D4]">
+                        <p class="text-xs text-[#6E5F53] leading-relaxed">
+                            Setelah pembayaran diverifikasi pengelola, status kamar langsung aktif, kwitansi PDF siap
+                            diunduh, dan Anda siap menempati kamar sesuai tanggal masuk.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Garis & Nomor Tengah -->
                 <div class="hidden md:flex flex-col items-center self-stretch">
                     <div class="w-0.5 flex-1 bg-[#DFD2BE]"></div>
                     <div
@@ -906,15 +913,9 @@
                     <div class="w-0.5 flex-1 bg-transparent"></div>
                 </div>
 
-                <!-- Penjelasan Kanan -->
-                <div class="md:pl-4 md:py-6">
-                    <div class="flex items-center gap-2 md:hidden mb-1">
-                        <span
-                            class="w-6 h-6 rounded-full bg-[#EFE4D4] text-[#8F6547] font-bold text-xs inline-flex items-center justify-center">4</span>
-                        <span class="text-xs font-bold text-[#8F6547]">Tahap Keempat</span>
-                    </div>
-                    <h3 class="text-base sm:text-lg font-bold text-[#2D231C]">Kamar Aktif Sesuai Jadwal</h3>
-                    <p class="text-xs sm:text-sm text-[#6E5F53] mt-1.5 leading-relaxed">
+                <div class="hidden md:block md:pl-4 md:py-6">
+                    <h3 class="text-lg font-bold text-[#2D231C]">Kamar Aktif Sesuai Jadwal</h3>
+                    <p class="text-sm text-[#6E5F53] mt-1.5 leading-relaxed">
                         Setelah pembayaran diverifikasi pengelola, status kamar langsung aktif, kwitansi PDF siap
                         diunduh, dan Anda siap menempati kamar sesuai tanggal masuk.
                     </p>
@@ -925,19 +926,19 @@
 
     <!-- SECTION FAQ (PERTANYAAN UMUM) -->
     <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-xl mx-auto mb-10">
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#2D231C] tracking-tight">Pertanyaan Umum</h2>
+        <div class="text-center max-w-xl mx-auto mb-7 sm:mb-10">
+            <h2 class="text-xl sm:text-3xl font-bold text-[#2D231C] tracking-tight">Pertanyaan Umum</h2>
             <p class="text-xs sm:text-sm text-[#6E5F53] mt-1.5">Jawaban singkat seputar cara booking, pembayaran DP,
                 dan aturan kost.</p>
         </div>
 
-        <div x-data="{ activeFaq: 0 }" class="space-y-3">
+        <div x-data="{ activeFaq: 0 }" class="space-y-2.5 sm:space-y-3">
             <!-- FAQ 1 -->
             <div class="bg-[#FAF6EE] rounded-2xl transition-colors duration-200"
                 :class="activeFaq === 0 ? 'ring-1 ring-[#D8C7AF]' : 'hover:bg-[#FAF6EE]/80'">
                 <button type="button" @click="activeFaq = activeFaq === 0 ? null : 0"
-                    class="w-full px-5 py-4 flex items-center justify-between gap-4 text-left cursor-pointer">
-                    <span class="text-sm sm:text-base font-bold text-[#2D231C] transition-colors"
+                    class="w-full px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between gap-3 sm:gap-4 text-left cursor-pointer">
+                    <span class="text-xs sm:text-base font-bold text-[#2D231C] leading-snug transition-colors"
                         :class="activeFaq === 0 ? 'text-[#8F6547]' : ''">
                         Apakah saya bisa membayar DP 50%?
                     </span>
@@ -956,7 +957,7 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 translate-y-0"
                     x-transition:leave-end="opacity-0 -translate-y-1"
-                    class="px-5 pb-4 text-xs sm:text-sm text-[#6E5F53] leading-relaxed">
+                    class="px-4 sm:px-5 pb-3.5 sm:pb-4 text-xs sm:text-sm text-[#6E5F53] leading-relaxed">
                     <div class="pt-3 border-t border-[#EFE4D4]">
                         Ya, jika opsi DP tersedia untuk kamar tersebut, Anda dapat membayar 50% terlebih dahulu sesuai
                         ketentuan pengelola, dan sisanya dilunasi sebelum tanggal masuk.
@@ -968,8 +969,8 @@
             <div class="bg-[#FAF6EE] rounded-2xl transition-colors duration-200"
                 :class="activeFaq === 1 ? 'ring-1 ring-[#D8C7AF]' : 'hover:bg-[#FAF6EE]/80'">
                 <button type="button" @click="activeFaq = activeFaq === 1 ? null : 1"
-                    class="w-full px-5 py-4 flex items-center justify-between gap-4 text-left cursor-pointer">
-                    <span class="text-sm sm:text-base font-bold text-[#2D231C] transition-colors"
+                    class="w-full px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between gap-3 sm:gap-4 text-left cursor-pointer">
+                    <span class="text-xs sm:text-base font-bold text-[#2D231C] leading-snug transition-colors"
                         :class="activeFaq === 1 ? 'text-[#8F6547]' : ''">
                         Bagaimana jika kamar yang saya inginkan sedang terisi?
                     </span>
@@ -988,7 +989,7 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 translate-y-0"
                     x-transition:leave-end="opacity-0 -translate-y-1"
-                    class="px-5 pb-4 text-xs sm:text-sm text-[#6E5F53] leading-relaxed">
+                    class="px-4 sm:px-5 pb-3.5 sm:pb-4 text-xs sm:text-sm text-[#6E5F53] leading-relaxed">
                     <div class="pt-3 border-t border-[#EFE4D4]">
                         Anda tetap dapat mengajukan sewa untuk tanggal setelah masa sewa penghuni saat ini berakhir.
                         Pengajuan Anda akan masuk ke daftar antrian dan pembayaran baru dibuka setelah penghuni lama
@@ -1001,8 +1002,8 @@
             <div class="bg-[#FAF6EE] rounded-2xl transition-colors duration-200"
                 :class="activeFaq === 2 ? 'ring-1 ring-[#D8C7AF]' : 'hover:bg-[#FAF6EE]/80'">
                 <button type="button" @click="activeFaq = activeFaq === 2 ? null : 2"
-                    class="w-full px-5 py-4 flex items-center justify-between gap-4 text-left cursor-pointer">
-                    <span class="text-sm sm:text-base font-bold text-[#2D231C] transition-colors"
+                    class="w-full px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between gap-3 sm:gap-4 text-left cursor-pointer">
+                    <span class="text-xs sm:text-base font-bold text-[#2D231C] leading-snug transition-colors"
                         :class="activeFaq === 2 ? 'text-[#8F6547]' : ''">
                         Berapa lama proses verifikasi setelah saya unggah bukti transfer?
                     </span>
@@ -1021,7 +1022,7 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 translate-y-0"
                     x-transition:leave-end="opacity-0 -translate-y-1"
-                    class="px-5 pb-4 text-xs sm:text-sm text-[#6E5F53] leading-relaxed">
+                    class="px-4 sm:px-5 pb-3.5 sm:pb-4 text-xs sm:text-sm text-[#6E5F53] leading-relaxed">
                     <div class="pt-3 border-t border-[#EFE4D4]">
                         Pengelola memverifikasi pembayaran maksimal 1×24 jam setelah bukti transfer diunggah. Setelah
                         disetujui, status kamar otomatis aktif dan kwitansi PDF bisa langsung diunduh dari dashboard
@@ -1034,8 +1035,8 @@
             <div class="bg-[#FAF6EE] rounded-2xl transition-colors duration-200"
                 :class="activeFaq === 3 ? 'ring-1 ring-[#D8C7AF]' : 'hover:bg-[#FAF6EE]/80'">
                 <button type="button" @click="activeFaq = activeFaq === 3 ? null : 3"
-                    class="w-full px-5 py-4 flex items-center justify-between gap-4 text-left cursor-pointer">
-                    <span class="text-sm sm:text-base font-bold text-[#2D231C] transition-colors"
+                    class="w-full px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between gap-3 sm:gap-4 text-left cursor-pointer">
+                    <span class="text-xs sm:text-base font-bold text-[#2D231C] leading-snug transition-colors"
                         :class="activeFaq === 3 ? 'text-[#8F6547]' : ''">
                         Apakah biaya sewa bulanan sudah termasuk listrik dan WiFi?
                     </span>
@@ -1054,7 +1055,7 @@
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 translate-y-0"
                     x-transition:leave-end="opacity-0 -translate-y-1"
-                    class="px-5 pb-4 text-xs sm:text-sm text-[#6E5F53] leading-relaxed">
+                    class="px-4 sm:px-5 pb-3.5 sm:pb-4 text-xs sm:text-sm text-[#6E5F53] leading-relaxed">
                     <div class="pt-3 border-t border-[#EFE4D4]">
                         Tarif sewa sudah mencakup akses WiFi tiap lantai, air bersih, serta keamanan 24 jam. Untuk
                         pemakaian listrik masing-masing kamar menggunakan sistem token prabayar mandiri.
