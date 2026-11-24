@@ -55,9 +55,7 @@ Route::prefix('tenant')
     ->name('tenant.')
     ->middleware(['auth', 'role.tenant'])
     ->group(function () {
-        Route::get('/dashboard', fn() => redirect()->route('tenant.history'))->name('dashboard');
         Route::get('/pembayaran', fn() => redirect()->route('tenant.history'))->name('payments');
-
 
         // Menu History
         Route::get('/history', PaymentHistory::class)->name('history');
