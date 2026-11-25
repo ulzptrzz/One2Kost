@@ -109,13 +109,13 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // 6. Banner Slider Promo Halaman Depan
+        // 6. Banner Slider Promo Halaman Depan (Foto Kamar Kost Minimalis Asli)
         Slider::updateOrCreate(
             ['title' => 'Hunian Kost Modern, Nyaman & Strategis'],
             [
                 'subtitle' => 'Dilengkapi AC, Kamar Mandi Dalam, WiFi Kecepatan Tinggi, Keamanan 24 Jam & Fasilitas Lengkap.',
                 'badge_text' => 'Konsep Modern & Terpercaya',
-                'image' => 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1600&q=80',
+                'image' => 'https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=1600',
                 'button_text' => 'Lihat Katalog Kamar',
                 'button_link' => '#katalog',
                 'order' => 1,
@@ -128,7 +128,7 @@ class DatabaseSeeder extends Seeder
             [
                 'subtitle' => 'Dapatkan potongan harga spesial untuk masa sewa minimal 1 tahun dan gratis layanan kebersihan berkala.',
                 'badge_text' => 'Promo Spesial Tahun Ini',
-                'image' => 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1600&q=80',
+                'image' => 'https://images.pexels.com/photos/6585601/pexels-photo-6585601.jpeg?auto=compress&cs=tinysrgb&w=1600',
                 'button_text' => 'Pilih Kamar Favorit',
                 'button_link' => '#katalog',
                 'order' => 2,
@@ -141,7 +141,7 @@ class DatabaseSeeder extends Seeder
             [
                 'subtitle' => 'Pantau jadwal kosong kamar secara real-time, daftar antrean lebih awal, dan kelola laporan hunian dalam satu portal.',
                 'badge_text' => 'Tenant Management System',
-                'image' => 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80',
+                'image' => 'https://images.pexels.com/photos/6782567/pexels-photo-6782567.jpeg?auto=compress&cs=tinysrgb&w=1600',
                 'button_text' => 'Pelajari Cara Sewa',
                 'button_link' => '#alur-sewa',
                 'order' => 3,
@@ -230,7 +230,7 @@ class DatabaseSeeder extends Seeder
             ->values()
             ->all();
 
-        // 9. Data Kamar
+        // 9. Data Kamar (Foto Kamar Kost Minimalis / Kamar Tidur Rumahan Asli)
         // Kamar A101: MENUNGGU KONFIRMASI PERPANJANGAN (pending_renewal) — 1 Foto
         $room101 = Room::updateOrCreate(
             ['room_number' => 'A101'],
@@ -242,7 +242,7 @@ class DatabaseSeeder extends Seeder
                 'annual_price' => 16500000,
                 'size' => '3 x 4 m',
                 'description' => 'Kamar nyaman di lantai dasar dengan sirkulasi udara baik. Dilengkapi ranjang single springbed, lemari baju 2 pintu, meja belajar, AC, dan kamar mandi dalam.',
-                'main_image' => 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80',
+                'main_image' => 'https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=900',
                 'images' => null,
                 'status' => 'pending_renewal',
             ]
@@ -262,7 +262,7 @@ class DatabaseSeeder extends Seeder
                 'annual_price' => 20350000,
                 'size' => '3.5 x 4.5 m',
                 'description' => 'Kamar luas dengan tempat tidur Queen Size, smart LED lighting, meja kerja lebar, lemari geser cermin, AC dingin, dan water heater di kamar mandi.',
-                'main_image' => 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80',
+                'main_image' => 'https://images.pexels.com/photos/6585601/pexels-photo-6585601.jpeg?auto=compress&cs=tinysrgb&w=900',
                 'images' => null,
                 'status' => 'available',
             ]
@@ -271,11 +271,11 @@ class DatabaseSeeder extends Seeder
             'AC', 'WiFi Cepat', 'Kamar Mandi Dalam', 'Water Heater', 'Kasur Queen Size', 'Lemari Cermin', 'Meja & Kursi Kerja', 'Balkon Pribadi',
         ]));
 
-        // Kamar B201: TERSEDIA (Available) — MEMILIKI 3 FOTO KAMAR
+        // Kamar B201: TERSEDIA (Available) — MEMILIKI 3 FOTO KAMAR (Kamar + Meja Belajar + Kamar Mandi Dalam)
         $b201Photos = [
-            'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80',
+            'https://images.pexels.com/photos/6782567/pexels-photo-6782567.jpeg?auto=compress&cs=tinysrgb&w=900',
+            'https://images.pexels.com/photos/4050318/pexels-photo-4050318.jpeg?auto=compress&cs=tinysrgb&w=900',
+            'https://images.pexels.com/photos/6585763/pexels-photo-6585763.jpeg?auto=compress&cs=tinysrgb&w=900',
         ];
         $room201 = Room::updateOrCreate(
             ['room_number' => 'B201'],
@@ -307,7 +307,7 @@ class DatabaseSeeder extends Seeder
                 'annual_price' => 19800000,
                 'size' => '3.5 x 4 m',
                 'description' => 'Kamar tenang di lantai 2 dengan pemandangan taman samping. Fasilitas lengkap siap huni.',
-                'main_image' => 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80',
+                'main_image' => 'https://images.pexels.com/photos/7534555/pexels-photo-7534555.jpeg?auto=compress&cs=tinysrgb&w=900',
                 'images' => null,
                 'status' => 'occupied',
             ]
@@ -327,7 +327,7 @@ class DatabaseSeeder extends Seeder
                 'annual_price' => 15950000,
                 'size' => '3 x 4 m',
                 'description' => 'Kamar hemat bersahabat bagi mahasiswa atau karyawan muda. Sirkulasi udara segar dan pencahayaan alami.',
-                'main_image' => 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80',
+                'main_image' => 'https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=900',
                 'images' => null,
                 'status' => 'available',
             ]
@@ -366,7 +366,7 @@ class DatabaseSeeder extends Seeder
                 'bank_account_id' => $bca->id,
                 'amount' => 3000000,
                 'payment_date' => $startDateA101,
-                'proof_image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80',
+                'proof_image' => 'https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg?auto=compress&cs=tinysrgb&w=700',
                 'sender_name' => 'Ahmad Pratama',
                 'sender_bank' => 'BCA',
                 'status' => 'approved',
@@ -405,7 +405,7 @@ class DatabaseSeeder extends Seeder
                 'bank_account_id' => $bca->id,
                 'amount' => 900000,
                 'payment_date' => now()->subDays(2),
-                'proof_image' => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80',
+                'proof_image' => 'https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg?auto=compress&cs=tinysrgb&w=700',
                 'sender_name' => 'Budi Santoso',
                 'sender_bank' => 'Mandiri',
                 'status' => 'approved',
@@ -444,7 +444,7 @@ class DatabaseSeeder extends Seeder
             [
                 'room_id' => $room101->id,
                 'description' => 'Unit AC di kamar A101 mengeluarkan tetesan air di bagian bawah casing dan hembusan udara kurang sejuk sejak kemarin sore.',
-                'photo' => 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80',
+                'photo' => 'https://images.pexels.com/photos/3964341/pexels-photo-3964341.jpeg?auto=compress&cs=tinysrgb&w=700',
                 'status' => 'in_progress',
                 'admin_response' => 'Teknisi service AC sudah dijadwalkan datang hari Jumat pukul 14:00 WIB. Mohon pastikan ada orang di kamar.',
             ]
