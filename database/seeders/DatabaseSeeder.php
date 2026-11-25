@@ -109,13 +109,13 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // 6. Banner Slider Promo Halaman Depan (Foto Kamar Kost Minimalis Asli)
+        // 6. Banner Slider Promo Halaman Depan
         Slider::updateOrCreate(
             ['title' => 'Hunian Kost Modern, Nyaman & Strategis'],
             [
                 'subtitle' => 'Dilengkapi AC, Kamar Mandi Dalam, WiFi Kecepatan Tinggi, Keamanan 24 Jam & Fasilitas Lengkap.',
                 'badge_text' => 'Konsep Modern & Terpercaya',
-                'image' => 'https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=1600',
+                'image' => '/images/kost.png',
                 'button_text' => 'Lihat Katalog Kamar',
                 'button_link' => '#katalog',
                 'order' => 1,
@@ -128,7 +128,7 @@ class DatabaseSeeder extends Seeder
             [
                 'subtitle' => 'Dapatkan potongan harga spesial untuk masa sewa minimal 1 tahun dan gratis layanan kebersihan berkala.',
                 'badge_text' => 'Promo Spesial Tahun Ini',
-                'image' => 'https://images.pexels.com/photos/6585601/pexels-photo-6585601.jpeg?auto=compress&cs=tinysrgb&w=1600',
+                'image' => '/images/kost2.jpg',
                 'button_text' => 'Pilih Kamar Favorit',
                 'button_link' => '#katalog',
                 'order' => 2,
@@ -141,7 +141,7 @@ class DatabaseSeeder extends Seeder
             [
                 'subtitle' => 'Pantau jadwal kosong kamar secara real-time, daftar antrean lebih awal, dan kelola laporan hunian dalam satu portal.',
                 'badge_text' => 'Tenant Management System',
-                'image' => 'https://images.pexels.com/photos/6782567/pexels-photo-6782567.jpeg?auto=compress&cs=tinysrgb&w=1600',
+                'image' => '/images/kost3.jpg',
                 'button_text' => 'Pelajari Cara Sewa',
                 'button_link' => '#alur-sewa',
                 'order' => 3,
@@ -230,7 +230,7 @@ class DatabaseSeeder extends Seeder
             ->values()
             ->all();
 
-        // 9. Data Kamar (Foto Kamar Kost Minimalis / Kamar Tidur Rumahan Asli)
+        // 9. Data Kamar
         // Kamar A101: MENUNGGU KONFIRMASI PERPANJANGAN (pending_renewal) — 1 Foto
         $room101 = Room::updateOrCreate(
             ['room_number' => 'A101'],
@@ -242,7 +242,7 @@ class DatabaseSeeder extends Seeder
                 'annual_price' => 16500000,
                 'size' => '3 x 4 m',
                 'description' => 'Kamar nyaman di lantai dasar dengan sirkulasi udara baik. Dilengkapi ranjang single springbed, lemari baju 2 pintu, meja belajar, AC, dan kamar mandi dalam.',
-                'main_image' => 'https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=900',
+                'main_image' => '/images/kost.png',
                 'images' => null,
                 'status' => 'pending_renewal',
             ]
@@ -262,7 +262,7 @@ class DatabaseSeeder extends Seeder
                 'annual_price' => 20350000,
                 'size' => '3.5 x 4.5 m',
                 'description' => 'Kamar luas dengan tempat tidur Queen Size, smart LED lighting, meja kerja lebar, lemari geser cermin, AC dingin, dan water heater di kamar mandi.',
-                'main_image' => 'https://images.pexels.com/photos/6585601/pexels-photo-6585601.jpeg?auto=compress&cs=tinysrgb&w=900',
+                'main_image' => '/images/kost2.jpg',
                 'images' => null,
                 'status' => 'available',
             ]
@@ -271,11 +271,11 @@ class DatabaseSeeder extends Seeder
             'AC', 'WiFi Cepat', 'Kamar Mandi Dalam', 'Water Heater', 'Kasur Queen Size', 'Lemari Cermin', 'Meja & Kursi Kerja', 'Balkon Pribadi',
         ]));
 
-        // Kamar B201: TERSEDIA (Available) — MEMILIKI 3 FOTO KAMAR (Kamar + Meja Belajar + Kamar Mandi Dalam)
+        // Kamar B201: TERSEDIA (Available) — MEMILIKI 3 FOTO KAMAR
         $b201Photos = [
-            'https://images.pexels.com/photos/6782567/pexels-photo-6782567.jpeg?auto=compress&cs=tinysrgb&w=900',
-            'https://images.pexels.com/photos/4050318/pexels-photo-4050318.jpeg?auto=compress&cs=tinysrgb&w=900',
-            'https://images.pexels.com/photos/6585763/pexels-photo-6585763.jpeg?auto=compress&cs=tinysrgb&w=900',
+            '/images/kost3.jpg',
+            '/images/kost4.jpg',
+            '/images/kost5.jpg',
         ];
         $room201 = Room::updateOrCreate(
             ['room_number' => 'B201'],
@@ -307,7 +307,7 @@ class DatabaseSeeder extends Seeder
                 'annual_price' => 19800000,
                 'size' => '3.5 x 4 m',
                 'description' => 'Kamar tenang di lantai 2 dengan pemandangan taman samping. Fasilitas lengkap siap huni.',
-                'main_image' => 'https://images.pexels.com/photos/7534555/pexels-photo-7534555.jpeg?auto=compress&cs=tinysrgb&w=900',
+                'main_image' => '/images/kost6.jpg',
                 'images' => null,
                 'status' => 'occupied',
             ]
@@ -327,7 +327,7 @@ class DatabaseSeeder extends Seeder
                 'annual_price' => 15950000,
                 'size' => '3 x 4 m',
                 'description' => 'Kamar hemat bersahabat bagi mahasiswa atau karyawan muda. Sirkulasi udara segar dan pencahayaan alami.',
-                'main_image' => 'https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=900',
+                'main_image' => '/images/kost7.jpg',
                 'images' => null,
                 'status' => 'available',
             ]
@@ -366,7 +366,7 @@ class DatabaseSeeder extends Seeder
                 'bank_account_id' => $bca->id,
                 'amount' => 3000000,
                 'payment_date' => $startDateA101,
-                'proof_image' => 'https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg?auto=compress&cs=tinysrgb&w=700',
+                'proof_image' => '/images/kost.png',
                 'sender_name' => 'Ahmad Pratama',
                 'sender_bank' => 'BCA',
                 'status' => 'approved',
@@ -405,7 +405,7 @@ class DatabaseSeeder extends Seeder
                 'bank_account_id' => $bca->id,
                 'amount' => 900000,
                 'payment_date' => now()->subDays(2),
-                'proof_image' => 'https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg?auto=compress&cs=tinysrgb&w=700',
+                'proof_image' => '/images/kost2.jpg',
                 'sender_name' => 'Budi Santoso',
                 'sender_bank' => 'Mandiri',
                 'status' => 'approved',
@@ -444,7 +444,7 @@ class DatabaseSeeder extends Seeder
             [
                 'room_id' => $room101->id,
                 'description' => 'Unit AC di kamar A101 mengeluarkan tetesan air di bagian bawah casing dan hembusan udara kurang sejuk sejak kemarin sore.',
-                'photo' => 'https://images.pexels.com/photos/3964341/pexels-photo-3964341.jpeg?auto=compress&cs=tinysrgb&w=700',
+                'photo' => '/images/kost3.jpg',
                 'status' => 'in_progress',
                 'admin_response' => 'Teknisi service AC sudah dijadwalkan datang hari Jumat pukul 14:00 WIB. Mohon pastikan ada orang di kamar.',
             ]
