@@ -109,13 +109,13 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // 6. Banner Slider Promo Halaman Depan
+        // 6. Banner Slider Promo Halaman Depan (Foto Kamar Kost Minimalis Asli)
         Slider::updateOrCreate(
             ['title' => 'Hunian Kost Modern, Nyaman & Strategis'],
             [
                 'subtitle' => 'Dilengkapi AC, Kamar Mandi Dalam, WiFi Kecepatan Tinggi, Keamanan 24 Jam & Fasilitas Lengkap.',
                 'badge_text' => 'Konsep Modern & Terpercaya',
-                'image' => '/images/kost.png',
+                'image' => 'https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=1600',
                 'button_text' => 'Lihat Katalog Kamar',
                 'button_link' => '#katalog',
                 'order' => 1,
@@ -128,7 +128,7 @@ class DatabaseSeeder extends Seeder
             [
                 'subtitle' => 'Dapatkan potongan harga spesial untuk masa sewa minimal 1 tahun dan gratis layanan kebersihan berkala.',
                 'badge_text' => 'Promo Spesial Tahun Ini',
-                'image' => '/images/kost2.jpg',
+                'image' => 'https://images.pexels.com/photos/6585601/pexels-photo-6585601.jpeg?auto=compress&cs=tinysrgb&w=1600',
                 'button_text' => 'Pilih Kamar Favorit',
                 'button_link' => '#katalog',
                 'order' => 2,
@@ -141,7 +141,7 @@ class DatabaseSeeder extends Seeder
             [
                 'subtitle' => 'Pantau jadwal kosong kamar secara real-time, daftar antrean lebih awal, dan kelola laporan hunian dalam satu portal.',
                 'badge_text' => 'Tenant Management System',
-                'image' => '/images/kost3.jpg',
+                'image' => 'https://images.pexels.com/photos/6782567/pexels-photo-6782567.jpeg?auto=compress&cs=tinysrgb&w=1600',
                 'button_text' => 'Pelajari Cara Sewa',
                 'button_link' => '#alur-sewa',
                 'order' => 3,
