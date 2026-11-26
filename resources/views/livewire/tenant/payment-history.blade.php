@@ -1,17 +1,50 @@
-<div class="space-y-5 pb-24">
+<div class="space-y-5 pb-24" x-data="{ showAlreadyPaidModal: false }">
 
-    <!-- HEADER BAR -->
+   <!-- HEADER BAR -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
             <h2 class="text-lg font-extrabold text-[#5C402C] tracking-tight">Riwayat Sewa & Bukti Pembayaran</h2>
             <p class="text-xs text-[#8F6547]">Pantau informasi kamar aktif, masa berlaku sewa, serta kelola bukti transfer pembayaran Anda dalam satu halaman.</p>
         </div>
-        <button wire:click="openUploadModal"
-            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Unggah Bukti Transfer
-        </button>
+
+        @php
+            $isContractFullyPaid = $activeBooking && $payableBookings->isEmpty() && !$dpBookingPendingSettlement;
+        @endphp
+
+        @if($isContractFullyPaid)
+            <button type="button" @click="showAlreadyPaidModal = true"
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0 self-start sm:self-auto">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                Bukti Transfer
+            </button>
+        @else
+            <button wire:click="openUploadModal"
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0 self-start sm:self-auto">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                Bukti Transfer
+            </button>
+        @endif
     </div>
+
+    <!-- POP-UP SUDAH MEMBAYAR MASA SEWA KONTRAK -->
+    @teleport('body')
+        <div x-show="showAlreadyPaidModal" x-cloak
+             class="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-[#5C402C]/45 backdrop-blur-xs transition-opacity" @click="showAlreadyPaidModal = false"></div>
+            <div class="relative z-10 w-full max-w-sm rounded-xl bg-[#FAF6EE] p-5 text-center shadow-2xl space-y-3">
+                <div class="w-11 h-11 rounded-full bg-[#EFE4D4] text-[#5C402C] mx-auto flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <p class="text-sm font-bold text-[#5C402C]">Anda sudah membayar masa sewa kontrak mu</p>
+                <div class="pt-1">
+                    <button type="button" @click="showAlreadyPaidModal = false"
+                        class="px-5 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endteleport
 
     <!-- NOTIFIKASI SUKSES / PERPANJANGAN -->
     @if(session()->has('success') || session()->has('renewal_message'))
@@ -167,9 +200,22 @@
         <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Rekening Bank Pengelola</h3>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             @foreach($bankAccounts as $bank)
-                <div class="p-3.5 rounded-lg bg-[#F3ECE0] border border-[#E2D6C3]">
+                <div class="p-3.5 rounded-lg bg-[#F3ECE0] border border-[#E2D6C3]" x-data="{ copied: false }">
                     <span class="text-[11px] font-bold text-[#A67B5B] uppercase tracking-wider">{{ $bank->bank_name }}</span>
-                    <p class="text-sm font-mono font-extrabold text-[#5C402C] mt-0.5">{{ $bank->account_number }}</p>
+                    <div class="flex items-center justify-between gap-2 mt-0.5">
+                        <p class="text-sm font-mono font-extrabold text-[#5C402C]">{{ $bank->account_number }}</p>
+                        <button type="button"
+                                @click="navigator.clipboard.writeText('{{ $bank->account_number }}'); copied = true; setTimeout(() => copied = false, 2000)"
+                                class="p-1 rounded text-[#8F6547] hover:text-[#5C402C] hover:bg-[#EFE4D4] transition cursor-pointer shrink-0"
+                                title="Salin nomor rekening">
+                            <svg x-show="!copied" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <svg x-show="copied" x-cloak class="w-4 h-4 text-[#5B8552]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </button>
+                    </div>
                     <p class="text-xs text-[#7A563C] mt-0.5 truncate">a.n. {{ $bank->account_holder }}</p>
                 </div>
             @endforeach
@@ -325,9 +371,25 @@
                                 @error('paymentType') <span class="text-xs text-[#9E4735] mt-1 block">{{ $message }}</span> @enderror
                             </div>
 
-                            <div>
+                            <div x-data="{
+                                rawAmount: @entangle('amount'),
+                                formatted: '',
+                                init() {
+                                    this.syncFromRaw(this.rawAmount);
+                                    this.$watch('rawAmount', value => this.syncFromRaw(value));
+                                },
+                                syncFromRaw(val) {
+                                    let digits = String(val ?? '').replace(/\D/g, '');
+                                    this.formatted = digits ? digits.replace(/\B(?=(\d{3})+(?!\d))/g, '.') : '';
+                                },
+                                onInput(e) {
+                                    let digits = e.target.value.replace(/\D/g, '');
+                                    this.rawAmount = digits ? parseInt(digits, 10) : '';
+                                    this.formatted = digits ? digits.replace(/\B(?=(\d{3})+(?!\d))/g, '.') : '';
+                                }
+                            }">
                                 <label class="block text-[11px] font-bold uppercase text-[#5C402C] mb-1.5">Nominal Transfer (Rp) <span class="text-[#9E4735]">*</span></label>
-                                <input type="number" wire:model="amount" class="w-full px-3 py-2.5 rounded-lg border border-[#DDD0BC] bg-[#F3ECE0]/60 text-xs font-bold text-[#5C402C] outline-none focus:ring-2 focus:ring-[#A67B5B]">
+                                <input type="text" inputmode="numeric" :value="formatted" @input="onInput($event)" placeholder="0" class="w-full px-3 py-2.5 rounded-lg border border-[#DDD0BC] bg-[#F3ECE0]/60 text-xs font-bold text-[#5C402C] outline-none focus:ring-2 focus:ring-[#A67B5B]">
                                 @error('amount') <span class="text-xs text-[#9E4735] mt-1 block">{{ $message }}</span> @enderror
                             </div>
                         </div>

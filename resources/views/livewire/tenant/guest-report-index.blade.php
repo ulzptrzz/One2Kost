@@ -7,7 +7,7 @@
             <p class="text-xs text-[#8F6547]">Form pelaporan teman atau keluarga yang berkunjung malam / menginap demi ketertiban & keamanan lingkungan kost.</p>
         </div>
         <button wire:click="openCreateModal"
-            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0">
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0 self-start sm:self-auto">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             Lapor Kunjungan Tamu
         </button>
@@ -26,39 +26,44 @@
             <h3 class="text-xs font-bold uppercase tracking-wider text-[#8F6547]">Riwayat Tamu Berkunjung</h3>
         </div>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto
+                    [&::-webkit-scrollbar]:h-2
+                    [&::-webkit-scrollbar-track]:bg-[#F3ECE0]
+                    [&::-webkit-scrollbar-thumb]:bg-[#C9B49A]
+                    [&::-webkit-scrollbar-thumb]:rounded-full
+                    hover:[&::-webkit-scrollbar-thumb]:bg-[#A67B5B]">
             <table class="w-full text-left border-collapse text-xs">
                 <thead>
-                    <tr class="bg-[#F3ECE0] text-[#8F6547] text-[11px] font-bold uppercase tracking-wider border-b border-[#E2D6C3]">
-                        <th class="px-5 py-3">Nama Tamu</th>
-                        <th class="px-5 py-3">Tanggal & Jam</th>
-                        <th class="px-5 py-3">Durasi Kunjungan</th>
-                        <th class="px-5 py-3">Keperluan</th>
-                        <th class="px-5 py-3">Kontak Tamu</th>
-                        <th class="px-5 py-3">Status Pengelola</th>
+                    <tr class="bg-[#F3ECE0] text-[#8F6547] text-[11px] font-bold uppercase tracking-wider border-b border-[#E2D6C3] whitespace-nowrap">
+                        <th class="px-5 py-3 min-w-[200px]">Nama Tamu</th>
+                        <th class="px-5 py-3 min-w-[140px]">Tanggal & Jam</th>
+                        <th class="px-5 py-3 min-w-[145px]">Durasi Kunjungan</th>
+                        <th class="px-5 py-3 min-w-[210px]">Keperluan</th>
+                        <th class="px-5 py-3 min-w-[130px]">Kontak Tamu</th>
+                        <th class="px-5 py-3 min-w-[140px]">Status Pengelola</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-[#E8DEC9] text-[#5C402C]">
                     @forelse($reports as $r)
                         <tr class="hover:bg-[#F3ECE0]/60 transition">
-                            <td class="px-5 py-3.5">
-                                <span class="font-bold text-[#5C402C] block">{{ $r->guest_name }}</span>
-                                <span class="text-[11px] text-[#8F6547] bg-[#EFE4D4] px-2 py-0.5 rounded font-semibold inline-block mt-0.5">{{ $r->relationship }}</span>
+                            <td class="px-5 py-3.5 align-top">
+                                <span class="font-bold text-[#5C402C] block whitespace-nowrap">{{ $r->guest_name }}</span>
+                                <span class="text-[11px] text-[#8F6547] bg-[#EFE4D4] px-2 py-0.5 rounded font-semibold inline-block mt-1">{{ $r->relationship }}</span>
                             </td>
-                            <td class="px-5 py-3.5 whitespace-nowrap">
+                            <td class="px-5 py-3.5 align-top whitespace-nowrap">
                                 <span class="font-bold text-[#5C402C]">{{ $r->visit_date->format('d M Y') }}</span>
-                                <span class="block text-[11px] text-[#9C785C]">{{ $r->visit_time }}</span>
+                                <span class="block text-[11px] text-[#9C785C] mt-0.5">{{ $r->visit_time }}</span>
                             </td>
-                            <td class="px-5 py-3.5 font-semibold text-[#5C402C] whitespace-nowrap">
+                            <td class="px-5 py-3.5 align-top font-semibold text-[#5C402C] whitespace-nowrap">
                                 {{ $r->duration }}
                             </td>
-                            <td class="px-5 py-3.5 text-[#7A563C] max-w-xs leading-relaxed">
+                            <td class="px-5 py-3.5 align-top text-[#7A563C] leading-relaxed">
                                 {{ $r->purpose }}
                             </td>
-                            <td class="px-5 py-3.5 text-[#8F6547] font-mono text-xs whitespace-nowrap">
+                            <td class="px-5 py-3.5 align-top text-[#8F6547] font-mono text-xs whitespace-nowrap">
                                 {{ $r->guest_phone ?: '-' }}
                             </td>
-                            <td class="px-5 py-3.5 whitespace-nowrap">
+                            <td class="px-5 py-3.5 align-top whitespace-nowrap">
                                 @if($r->status === 'acknowledged')
                                     <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] font-bold bg-[#EBF2E6] text-[#3F5E30] border border-[#C6D8BA]">
                                         <svg class="w-3.5 h-3.5 text-[#5B8552]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
