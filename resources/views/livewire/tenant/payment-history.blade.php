@@ -3,8 +3,7 @@
   <!-- HEADER BAR -->
     <div class="flex flex-row items-center justify-between gap-3">
         <div class="min-w-0">
-            <h2 class="text-lg font-extrabold text-[#5C402C] tracking-tight">Riwayat Sewa & Bukti Pembayaran</h2>
-            <p class="text-xs text-[#8F6547]">Pantau informasi kamar aktif, masa berlaku sewa, serta kelola bukti transfer pembayaran Anda dalam satu halaman.</p>
+            <h2 class="text-lg font-extrabold text-[#5C402C] tracking-tight">Riwayat Sewa</h2>
         </div>
 
         @php

@@ -1,15 +1,14 @@
 <div class="space-y-5 pb-24">
 
     <!-- HEADER BAR -->
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-            <h2 class="text-lg font-extrabold text-[#5C402C] tracking-tight">Laporan Kerusakan Fasilitas</h2>
-            <p class="text-xs text-[#8F6547]">Laporkan kendala perlengkapan di dalam kamar agar tim teknisi pengelola dapat segera memperbaiki.</p>
+    <div class="flex flex-row items-center justify-between gap-3">
+        <div class="min-w-0">
+            <h2 class="text-lg font-extrabold text-[#5C402C] tracking-tight">Laporan Kerusakan</h2>
         </div>
         <button wire:click="openCreateModal"
             class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Buat Laporan Kerusakan
+            Lapor Kerusakan
         </button>
     </div>
 
