@@ -17,10 +17,46 @@ use App\Livewire\LandingPage;
 use App\Livewire\Tenant\DamageReportIndex;
 use App\Livewire\Tenant\GuestReportIndex;
 use App\Livewire\Tenant\PaymentHistory;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rules\Password;
 
 // Public Landing Page
 Route::get('/', LandingPage::class)->name('home');
+
+// Direct Password Reset (tanpa kirim email)
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate([
+        'email' => ['required', 'email', 'exists:users,email'],
+    ], [
+        'email.exists' => 'Email tersebut tidak terdaftar di sistem.',
+    ]);
+
+    return redirect()->route('password.reset', [
+        'token' => 'direct-reset',
+        'email' => $request->email,
+    ]);
+})->middleware('guest')->name('password.email');
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'email' => ['required', 'email', 'exists:users,email'],
+        'password' => ['required', 'confirmed', Password::min(8)],
+    ], [
+        'email.exists' => 'Email tidak ditemukan.',
+        'password.min' => 'Password minimal 8 karakter.',
+        'password.confirmed' => 'Konfirmasi password tidak cocok.',
+    ]);
+
+    $user = User::where('email', $request->email)->firstOrFail();
+    $user->forceFill([
+        'password' => Hash::make($request->password),
+    ])->save();
+
+    return redirect()->route('login')->with('status', 'Password berhasil diperbarui! Silakan login dengan password baru.');
+})->middleware('guest')->name('password.update');
 
 // Halaman Pemberitahuan Terkunci (untuk pengunjung yang belum login)
 Route::get('/portal/akses-terkunci/{feature?}', function (?string $feature = null) {

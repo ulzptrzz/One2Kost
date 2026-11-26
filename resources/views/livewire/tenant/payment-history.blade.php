@@ -1,8 +1,8 @@
 <div class="space-y-5 pb-24" x-data="{ showAlreadyPaidModal: false }">
 
-   <!-- HEADER BAR -->
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
+  <!-- HEADER BAR -->
+    <div class="flex flex-row items-center justify-between gap-3">
+        <div class="min-w-0">
             <h2 class="text-lg font-extrabold text-[#5C402C] tracking-tight">Riwayat Sewa & Bukti Pembayaran</h2>
             <p class="text-xs text-[#8F6547]">Pantau informasi kamar aktif, masa berlaku sewa, serta kelola bukti transfer pembayaran Anda dalam satu halaman.</p>
         </div>
@@ -13,13 +13,13 @@
 
         @if($isContractFullyPaid)
             <button type="button" @click="showAlreadyPaidModal = true"
-                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0 self-start sm:self-auto">
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 Bukti Transfer
             </button>
         @else
             <button wire:click="openUploadModal"
-                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0 self-start sm:self-auto">
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer shrink-0">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 Bukti Transfer
             </button>
@@ -35,7 +35,7 @@
                 <div class="w-11 h-11 rounded-full bg-[#EFE4D4] text-[#5C402C] mx-auto flex items-center justify-center">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <p class="text-sm font-bold text-[#5C402C]">Anda sudah membayar masa sewa kontrak mu</p>
+                <p class="text-sm font-bold text-[#5C402C]">Anda sudah membayar masa sewa kontrak</p>
                 <div class="pt-1">
                     <button type="button" @click="showAlreadyPaidModal = false"
                         class="px-5 py-2 rounded-lg bg-[#A67B5B] text-[#FAF6EE] font-bold text-xs hover:bg-[#8F6547] transition cursor-pointer">

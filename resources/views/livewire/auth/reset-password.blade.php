@@ -18,9 +18,9 @@
                        name="email"
                        type="email"
                        value="{{ old('email', request('email')) }}"
+                       readonly
                        required
-                       autocomplete="email"
-                       class="w-full px-3.5 py-2.5 rounded-xl border border-[#DDD0BC] bg-[#F3ECE0] text-sm text-[#5C402C] placeholder-[#A88B73] focus:bg-[#FAF6EE] focus:ring-2 focus:ring-[#A67B5B]/25 focus:border-[#A67B5B] outline-none transition">
+                       class="w-full px-3.5 py-2.5 rounded-xl border border-[#DDD0BC] bg-[#EFE4D4] text-sm text-[#7A563C] outline-none cursor-not-allowed">
                 @error('email')
                     <p class="mt-1 text-xs text-[#9E4735]">{{ $message }}</p>
                 @enderror
@@ -34,6 +34,7 @@
                            name="password"
                            :type="show ? 'text' : 'password'"
                            required
+                           autofocus
                            autocomplete="new-password"
                            placeholder="Minimal 8 karakter"
                            class="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-[#DDD0BC] bg-[#F3ECE0] text-sm text-[#5C402C] placeholder-[#A88B73] focus:bg-[#FAF6EE] focus:ring-2 focus:ring-[#A67B5B]/25 focus:border-[#A67B5B] outline-none transition">
